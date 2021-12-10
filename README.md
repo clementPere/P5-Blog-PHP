@@ -1,3 +1,5 @@
 # Blog
 Blog en POO utilisant la structure MVC
-Je suis un test !
+
+# Etape numéro 1: 
+Création de la structure MVC
