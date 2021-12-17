@@ -11,7 +11,7 @@ class ArticlesController {
         if(isset($url) && count($url) > 1){
                 throw new Exception('Page introuvable');
         }else{
-            echo 'Bonsoir';
+            
             $this->articleManager = new ArticleManager;
             $articles = $this->articleManager->getArticles();
             require_once('src/Views/ArticlesView.php');
