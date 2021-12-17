@@ -1,5 +1,5 @@
 <?php
-
+namespace App\Controllers;
 class Router {
     private $ctrl;
     private $view;
@@ -7,9 +7,9 @@ class Router {
     public function routeReq(){
         try{
             //Chargement des classes
-            spl_autoload_register(function($class){
-                require_once('Models/'.$class.'.php');
-            });
+            // spl_autoload_register(function($class){
+            //     require_once('Models/'.$class.'.php');
+            // });
             $url = '';
 
             //Inclus le controller selon l'action de l'utilisateur
@@ -30,7 +30,7 @@ class Router {
                 }
             }
             else{
-                require_once('Controllers/HomeController.php');
+                
                 $this->ctrl = new HomeController($url);
             }
         }

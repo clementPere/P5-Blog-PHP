@@ -1,4 +1,7 @@
 <?php
+namespace App\Models;
+
+use PDO;
 
 abstract class Model {
     private static $db;
@@ -13,17 +16,23 @@ abstract class Model {
     protected function getDb(){
         if(self::$db == null)
             self::setDb();
-            return self::$db;
+            return self::$db;  
     }
 
     protected function getAll($table, $obj){
         $var = [];
         $req = $this->getDb()->prepare('SELECT * FROM ' .$table. ' ORDER BY id ASC');
         $req->execute();
+        
         while($data = $req->fetch(PDO::FETCH_ASSOC)){
+            var_dump($data);
             $var[] = new $obj($data);
+           
         }
+        
         return $var;
         $req->closeCursor();
     }
+
+
 }

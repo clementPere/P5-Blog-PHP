@@ -1,13 +1,14 @@
 <?php 
+namespace App\Models;
 
 class Article {
     private $id; 
     private $titre;
     private $contenu;
 
-    public function __construct(array $data){
-        $this->hydrate($data);
-    }
+    // public function __construct(array $data){
+    //     $this->hydrate($data);
+    // }
 
     public function hydrate(array $data){
         foreach($data as $key => $value){
