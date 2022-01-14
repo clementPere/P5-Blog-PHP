@@ -3,7 +3,7 @@ namespace App\Controllers;
 
 use App\Models\ArticleManager;
 
-class ArticlesController {
+class ArticleController {
     private $articleManager;
     private $view;
 
@@ -14,12 +14,12 @@ class ArticlesController {
             
             $this->articleManager = new ArticleManager;
             $articles = $this->articleManager->getArticles();
-            require_once('src/Views/ArticlesView.php');
-            $this->articles();
+            require_once('src/Views/ArticleView.php');
+            $this->index();
         }
     }
 
-    private function articles(){
+    public function index(){
         $this->articleManager = new ArticleManager;
         $articles = $this->articleManager->getArticles();
     }
