@@ -1,28 +1,17 @@
-<?php 
+<?php
+
 namespace App\Models;
 
-class Article {
-    private $id; 
-    private $titre;
-    private $contenu;
-
-    // public function __construct(array $data){
-    //     $this->hydrate($data);
-    // }
-
-    public function hydrate(array $data){
-        foreach($data as $key => $value){
-            $method = 'set'.ucfirst($key);
-            if(method_exists($this, $method)){
-                $this->$method($value);
-            }
-        }
-    }
+class Article
+{
+    private string $id;
+    private string $titre;
+    private string $contenu;
 
 
     /**
      * Get the value of id
-     */ 
+     */
     public function getId()
     {
         return $this->id;
@@ -32,8 +21,8 @@ class Article {
      * Set the value of id
      *
      * @return  self
-     */ 
-    public function setId($id)
+     */
+    public function setId(string $id)
     {
         $this->id = $id;
 
@@ -42,7 +31,7 @@ class Article {
 
     /**
      * Get the value of titre
-     */ 
+     */
     public function getTitre()
     {
         return $this->titre;
@@ -52,8 +41,8 @@ class Article {
      * Set the value of titre
      *
      * @return  self
-     */ 
-    public function setTitre($titre)
+     */
+    public function setTitre(string $titre)
     {
         $this->titre = $titre;
 
@@ -62,7 +51,7 @@ class Article {
 
     /**
      * Get the value of contenu
-     */ 
+     */
     public function getContenu()
     {
         return $this->contenu;
@@ -72,8 +61,8 @@ class Article {
      * Set the value of contenu
      *
      * @return  self
-     */ 
-    public function setContenu($contenu)
+     */
+    public function setContenu(string $contenu)
     {
         $this->contenu = $contenu;
 
