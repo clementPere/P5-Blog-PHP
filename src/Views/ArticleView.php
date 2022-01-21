@@ -3,5 +3,7 @@
 
 
 foreach($articles as $article){
-  echo '<br> '.$article->getTitre().' '. $article->getContenu();
+  echo '<hr>Titre de l\'article : '.$article[1].'<br> Contenue de l\'article : '. $article[2].'</hr>';
 };
+
+?>

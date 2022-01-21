@@ -10,5 +10,5 @@ $router = new Router($_GET['url']);
  * Nom du controller à appeler avec sa methode
  */
 $router->get('/', "Home->index" ); 
-$router->get('/articles', "Article->index" );
+$router->get('/articles', "Article->__construct" );
 $router->run(); 

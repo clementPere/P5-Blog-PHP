@@ -16,7 +16,7 @@ abstract class Model {
     protected function getDb(){
         if(self::$db == null)
             self::setDb();
-            return self::$db;  
+            return self::$db;
     }
 
     protected function getAll($table, $obj){
@@ -26,13 +26,19 @@ abstract class Model {
         
         while($data = $req->fetch(PDO::FETCH_ASSOC)){
             var_dump($data);
-            $var[] = new $obj($data);
-           
+            $obj = new $obj;
+            $var[] = $obj->hydrate($data);
         }
-        
         return $var;
         $req->closeCursor();
     }
+
+    // public function getAll($table){
+    //     $req = $this->getDb()->prepare('SELECT * FROM ' .$table. ' ORDER BY id ASC');
+        
+    //     $req->execute();
+    //     return $req->fetchAll();    
+    // }
 
 
 }
