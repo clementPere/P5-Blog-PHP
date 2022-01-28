@@ -2,7 +2,7 @@
 
 namespace App\Models;
 
-class Article
+class Article extends Model
 {
     private string $id;
     private string $titre;
@@ -67,5 +67,11 @@ class Article
         $this->contenu = $contenu;
 
         return $this;
+    }
+
+    public function getArticles(): array
+    {
+        // $article = new Article();
+        return $this->getAll('articles');
     }
 }

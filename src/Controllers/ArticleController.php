@@ -2,10 +2,11 @@
 
 namespace App\Controllers;
 
+use App\Models\Article;
 use App\Models\ArticleManager;
 
 
-class ArticleController
+class ArticleController extends Controller
 {
     private $articleManager;
 
@@ -20,14 +21,12 @@ class ArticleController
 
     public function index()
     {
-        ob_start();
-        $articles = $this->getArticles();
-        require_once('src/Views/ArticleView.php');
+        $this->getVue('Article', $this->getArticles());
     }
 
     public function getArticles(): array
     {
-        $this->articleManager = new ArticleManager;
-        return $articles = $this->articleManager->getArticles();
+        $article = new Article;
+        return $article->getArticles();
     }
 }

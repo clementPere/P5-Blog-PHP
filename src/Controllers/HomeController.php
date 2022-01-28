@@ -1,9 +1,12 @@
 <?php
+
 namespace App\Controllers;
 
-class HomeController{
+class HomeController extends Controller
+{
 
-    public function index(){
-        require_once('src/Views/HomeView.php');
+    public function index()
+    {
+        $this->getVue('Home');
     }
 }
