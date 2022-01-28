@@ -8,7 +8,7 @@ class ArticleManager extends Model
 {
 
 
-    public function getArticles()
+    public function getArticles(): array
     {
         $article = new Article();
         return $this->getAll('articles');
