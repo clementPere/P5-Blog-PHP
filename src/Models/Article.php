@@ -68,10 +68,4 @@ class Article extends Model
 
         return $this;
     }
-
-    public function getArticles(): array
-    {
-        // $article = new Article();
-        return $this->getAll('articles');
-    }
 }
