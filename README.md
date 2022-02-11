@@ -1,6 +1,8 @@
-<p align="center"><a href="https://symfony.com" target="_blank">
-    <img src="https://www.freepnglogos.com/uploads/php-logo-png/php-logo-php-elephant-logo-vectors-download-5.png" width="200" alt="php logo, php elephant logo vectors download" />
-</a></p>
+<p align="center">
+    <a href="https://www.php.net/" target="_blank">
+        <img src="https://www.freepnglogos.com/uploads/php-logo-png/php-logo-php-elephant-logo-vectors-download-5.png"/>
+    </a>
+</p>
 # Blog PHP in POO using MVC structure
 ---
 # Requirements
