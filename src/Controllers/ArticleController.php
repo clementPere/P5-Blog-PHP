@@ -2,15 +2,15 @@
 
 namespace App\Controllers;
 
-use App\Models\ArticleManager;
+use App\Models\Article;
 
 
-class ArticleController
+class ArticleController extends Controller
 {
-    private $articleManager;
 
     public function __construct()
     {
+
         if (isset($url) && count($url) > 1) {
             throw new \Exception('Page introuvable');
         } else {
@@ -20,14 +20,11 @@ class ArticleController
 
     public function index()
     {
-        ob_start();
-        $articles = $this->getArticles();
-        require_once('src/Views/ArticleView.php');
-    }
+        $article = new Article;
 
-    public function getArticles(): array
-    {
-        $this->articleManager = new ArticleManager;
-        return $articles = $this->articleManager->getArticles();
+        $this->getVue('Article', $article->getOneBy('category', 'id', '2'));
+        $this->getVue('Articles', Article::getAll('articles'));
+
+        // $this->getVue('Article', $this->article->getOneBy('category', '1'));
     }
 }

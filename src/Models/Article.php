@@ -2,7 +2,7 @@
 
 namespace App\Models;
 
-class Article
+class Article extends Model
 {
     private string $id;
     private string $titre;
