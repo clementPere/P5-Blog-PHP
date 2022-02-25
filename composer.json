@@ -7,7 +7,9 @@
             "email": "clement.pere.dev@gmail.com"
         }
     ],
-    "require": {},
+    "require": {
+        "twig/twig": "^3.3"
+    },
     "autoload": {
         "psr-4": {
             "App\\": "src/"

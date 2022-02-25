@@ -2,12 +2,21 @@
 
 namespace App\Controllers;
 
-class Controller
+use Twig\Environment;
+use Twig\Loader\FilesystemLoader;
+
+abstract class Controller
 {
 
-    public function getVue(string $vueName, array $data = null)
+    private $loader;
+    protected $twig;
+
+    public function __construct()
     {
-        ob_start();
-        require_once('src/Views/' . $vueName . 'View.php');
+        //init folder with view file
+        $this->loader = new FilesystemLoader(ROOT . '\Views');
+
+        //init twig environment
+        $this->twig = new Environment($this->loader);
     }
 }

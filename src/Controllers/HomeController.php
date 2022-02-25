@@ -7,6 +7,6 @@ class HomeController extends Controller
 
     public function index()
     {
-        $this->getVue('Home');
+        $this->twig->display("home/index.html.twig");
     }
 }
