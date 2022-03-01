@@ -2,22 +2,22 @@
 
 namespace App\Controllers;
 
-use App\Models\Article;
+use App\Models\Post;
 
 
-class ArticleController extends Controller
+class PostController extends Controller
 {
 
     public function index()
     {
-        $article = new Article;
+        $post = new Post;
 
         // $this->getVue('Article', $article->getOneBy('category', 'id', '2'));
 
-        $articles = Article::getAll('articles');
+        $post = Post::getAll('post');
 
-        $this->twig->display("article/index.html.twig", [
-            'articles' => $articles
+        $this->twig->display("post/index.html.twig", [
+            'post' => $post
         ]);
         // $this->getVue('Article', $this->article->getOneBy('category', '1'));
     }

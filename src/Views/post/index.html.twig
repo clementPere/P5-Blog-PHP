@@ -1,0 +1,17 @@
+{% extends "base.html.twig" %}
+
+{% block title %}
+	Post
+{% endblock %}
+
+{% block body %}
+
+	{% for post in post %}
+		<p>Titre de l'article =>{{post.title}}</p>
+		<p>Header de l'article =>{{post.header}}</p>
+		<p>Contenu de l'article =>{{post.content}}</p>
+		<p>Auteur de l'article =>{{post.author}}</p>
+		<p>Date de création de l'article =>{{post.created_at}}</p>
+		<p>{{post.User_id.firstname}}
+		{% endfor %}
+	{% endblock %}
