@@ -12,4 +12,6 @@ $router = new Router($_GET['url']);
  */
 $router->get('/', "Home->index");
 $router->get('/posts', "Post->index");
+$router->get('/login', "Auth->index");
+$router->post('/login', "Auth->index");
 $router->run();

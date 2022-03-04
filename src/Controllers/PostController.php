@@ -10,8 +10,6 @@ class PostController extends Controller
 
     public function index()
     {
-        $post = new Post;
-
         // $this->getVue('Article', $article->getOneBy('category', 'id', '2'));
 
         $post = Post::getAll('post');
