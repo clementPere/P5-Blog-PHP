@@ -14,7 +14,10 @@ class AuthController extends Controller
     public function index()
     {
 
+        // $this->logout();
+
         $this->isConnected();
+        // var_dump($_GET['url']);
 
         //If the user want to connect
         if (isset($_POST['login-submit'])) {
@@ -22,7 +25,6 @@ class AuthController extends Controller
                 if ($_POST['email'] != "" and $_POST['password'] != "") {
                     $email = htmlspecialchars($_POST['email']);
                     $pass = htmlspecialchars($_POST['password']);
-
                     $user = new UserManager;
                     $userCredentials = $user->checkCredentials("$email", "$pass");
                     if (!$userCredentials) {
@@ -35,7 +37,7 @@ class AuthController extends Controller
                         // return new Response(200, [], $this->twig->display('home/index.html.twig'));
                         // $this->twig->display('home/index.html.twig');
                         // $this->router->get('/', "Home->index");
-                        header('Location: http://localhost/P5/Blog/');
+                        // header('Location: http://localhost/P5/Blog/');
                     }
                 }
             }
@@ -52,7 +54,7 @@ class AuthController extends Controller
 
                     $user = new UserManager;
                     $user->create($firstname, $lastname, $email, $password);
-                    header('Location: http://localhost/P5/Blog/login');
+                    header('Location: http://localhost/Formation/OpenClassrooms/P5blog/Blog/login');
                     echo 'Vous avez bien créer votre compte vous pouvez maintenant vous connecter !!!!';
                 }
             }

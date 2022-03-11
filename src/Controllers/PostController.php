@@ -10,6 +10,11 @@ class PostController extends Controller
 
     public function index()
     {
+        var_dump("Bonjour " . $_SESSION['email']);
+        if (!$this->isConnected()) {
+            header('Location: http://localhost/Formation/OpenClassrooms/P5blog/Blog/login');
+        }
+
         // $this->getVue('Article', $article->getOneBy('category', 'id', '2'));
 
         $post = Post::getAll('post');

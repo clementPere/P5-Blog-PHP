@@ -14,4 +14,6 @@ $router->get('/', "Home->index");
 $router->get('/posts', "Post->index");
 $router->get('/login', "Auth->index");
 $router->post('/login', "Auth->index");
+$router->get('/subscribe', "Auth->index");
+$router->post('/subscribe', "Auth->index");
 $router->run();
