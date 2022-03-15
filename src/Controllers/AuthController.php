@@ -10,35 +10,16 @@ class AuthController extends Controller
 {
 
 
-
     public function index()
     {
 
-        // $this->logout();
-
-        $this->isConnected();
-        // var_dump($_GET['url']);
-
+        $this->twig->display("login.html.twig");
         //If the user want to connect
         if (isset($_POST['login-submit'])) {
             if (isset($_POST['email']) and isset($_POST['password'])) {
                 if ($_POST['email'] != "" and $_POST['password'] != "") {
-                    $email = htmlspecialchars($_POST['email']);
-                    $pass = htmlspecialchars($_POST['password']);
-                    $user = new UserManager;
-                    $userCredentials = $user->checkCredentials("$email", "$pass");
-                    if (!$userCredentials) {
-                        echo 'Login ou mot de passe non valide !';
-                    }
-                    if ($userCredentials) {
-                        $_SESSION['email'] = $userCredentials[0]['email'];
-                        $_SESSION['id'] = $userCredentials[0]['id'];
-
-                        // return new Response(200, [], $this->twig->display('home/index.html.twig'));
-                        // $this->twig->display('home/index.html.twig');
-                        // $this->router->get('/', "Home->index");
-                        // header('Location: http://localhost/P5/Blog/');
-                    }
+                    $this->checkCredentials($_POST['email'], $_POST['password']);
+                    echo 'Login ou mot de passe non valide !';
                 }
             }
         }
@@ -51,13 +32,41 @@ class AuthController extends Controller
                     $lastname = htmlspecialchars($_POST['lastname']);
                     $email = htmlspecialchars($_POST['email']);
                     $password = htmlspecialchars($_POST['password']);
-
                     $user = new UserManager;
                     $user->create($firstname, $lastname, $email, $password);
                     header('Location: http://localhost/Formation/OpenClassrooms/P5blog/Blog/login');
-                    echo 'Vous avez bien créer votre compte vous pouvez maintenant vous connecter !!!!';
                 }
             }
         }
+    }
+
+
+
+    /**
+     * @param string $email
+     * @param string $password
+     * 
+     */
+    private function checkCredentials(string $email, string $password)
+    {
+        $email = htmlspecialchars($email);
+        $pass = htmlspecialchars($password);
+        $user = new UserManager;
+        $userCredentials = $user->checkCredentials("$email", "$pass");
+        if ($userCredentials) {
+            $this->connectUser($userCredentials);
+        }
+        return false;
+    }
+
+    /**
+     * @param array $userCredentials
+     * 
+     */
+    private function connectUser(array $userCredentials)
+    {
+        $_SESSION['email'] = $userCredentials[0]['email'];
+        $_SESSION['id'] = $userCredentials[0]['id'];
+        header('Location: http://localhost/Formation/OpenClassrooms/P5blog/Blog/');
     }
 }

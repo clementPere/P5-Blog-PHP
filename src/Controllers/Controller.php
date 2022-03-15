@@ -18,7 +18,7 @@ abstract class Controller
     {
 
         //init folder with view file
-        $this->loader = new FilesystemLoader(ROOT . '\Views');
+        $this->loader = new FilesystemLoader(ROOT . '\src\Views');
 
         //init twig environment
         $this->twig = new Environment($this->loader);
@@ -30,33 +30,26 @@ abstract class Controller
         $this->router = new Router('/');
     }
 
-
-    public function isConnected()
+    private function isConnected()
     {
         if (empty($_SESSION['email']) and empty($_SESSION['id'])) {
-            $this->twig->display('login.html.twig');
-            // header('Location: http://localhost/Formation/OpenClassrooms/P5blog/Blog/login');
-            return false;
+            return true;
         }
-        var_dump('Vous êtes déjà connecté !');
+        return false;
+    }
 
-        $url = $_GET['url'];
-
-        if ($url === "login") {
-            header('Location: http://localhost/Formation/OpenClassrooms/P5blog/Blog');
+    public function redirectNotConnected()
+    {
+        if ($this->isConnected()) {
+            header('Location: ' . BASE_URL . '/login');
         }
-        if ($url = !"login") {
-            header("Location: http://localhost/Formation/OpenClassrooms/P5blog/Blog/$url");
-        }
-        // header("Location: http://localhost/Formation/OpenClassrooms/P5blog/Blog/$url");
-        return true;
     }
 
     public function logout()
     {
         if (!empty($_SESSION['email']) and !empty($_SESSION['id'])) {
             session_destroy();
-            header('Location: http://localhost/Formation/OpenClassrooms/P5blog/Blog/');
+            header('Location: ' . BASE_URL);
         }
     }
 }

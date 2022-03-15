@@ -7,6 +7,12 @@ class HomeController extends Controller
 
     public function index()
     {
-        $this->twig->display("home/index.html.twig");
+
+        if (isset($_SESSION['email'])) {
+            $userData = ['email' => $_SESSION['email']];
+        }
+        $this->twig->display("home/index.html.twig", [
+            'data' => $userData
+        ]);
     }
 }
