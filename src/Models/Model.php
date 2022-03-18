@@ -32,4 +32,10 @@ class Model
         $req->execute();
         return $req->fetchAll();
     }
+
+    public function delete(string $table, string $select, string $value)
+    {
+        $req = DBManager::getDb()->prepare('DELETE FROM ' . $table . ' WHERE ' . $select . ' = ' . $value);
+        $req->execute();
+    }
 }

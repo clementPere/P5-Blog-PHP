@@ -1,0 +1,101 @@
+{% extends "base.html.twig" %}
+{% block stylesheets %}
+	<link rel="stylesheet" href="../assets/css/adminUser.css">
+{% endblock %}
+{% block title %}
+	Admin
+{% endblock %}
+{% block body %}
+{% if update_user %}
+    <div class="alert alert-success w-100" role="alert">
+  Vos modifications ont bien été prise en compte  <a href="{{ BASE_URL }}" class="alert-link">Retour à l'accueil</a>
+    </div>
+{% endif %}
+    {% for user in users %}
+        <div class="card" style="width: 30rem;">
+            <img src="../assets/images/user.png" class="card-img-top" alt="User image" style="background-color:grey;">
+            <div class="card-body">
+               <form id="login-form" action="" method="POST" role="form">
+                    <ul class="list-group list-group-flush">
+                        <li class="list-group-item">
+                        <div class="mb-1 form-group">
+                            <label class="form-label">Prénom</label>
+                            <input type="text" name="firstname" class="form-control" aria-describedby="firstname" value="{{user.firstname}}">
+                        </div>
+                        </li>
+                        <li class="list-group-item">
+                        <div class="mb-1">
+                            <label class="form-label">Nom</label>
+                            <input type="text" name="lastname" class="form-control" aria-describedby="lastname" value="{{user.lastname}}">
+                        </div>
+                        </li>
+                        
+                        <li class="list-group-item">
+                        <div class="mb-1">
+                            <label class="form-label">Email</label>
+                            <input type="email" name="email" class="form-control" aria-describedby="email" value="{{user.email}}">
+                        </div>
+                        </li>
+
+                        <li class="list-group-item">
+                        <div class="mb-1">
+                            <label class="form-label">Mot de passe</label>
+                            <input type="password" name="password" class="form-control" aria-describedby="password" value="{{user.password}}">
+                        </div>
+                        </li>
+                        
+                        
+                        <li class="list-group-item">
+                        <label class="form-label">Rôle</label>
+                            <div class="form-check">
+                                <input class="form-check-input" value="admin" type="radio" name="role" id="roleAdmin" {% if user.role == 'admin' %}
+                                    checked
+                                {% endif %}>
+                                <label class="form-check-label" for="roleAdmin">
+                                    Administrateur
+                                </label>
+                                </div>
+                                <div class="form-check">
+                                <input class="form-check-input" value="user" type="radio" name="role" id="roleUser" {% if user.role == 'user' %}
+                                    checked
+                                {% endif %} >
+                                <label class="form-check-label" for="roleUser">
+                                    Utilisateur
+                                </label>
+                            </div>
+                        </li>
+                        
+                        <li class="list-group-item"><hr>
+                        <label class="form-label">Validité</label>
+                            <div class="form-check">
+                                <input class="form-check-input" value="1" type="radio" name="is_valid" id="isValid" {% if user.is_valid == '1' %}
+                                    checked
+                                {% endif %}>
+                                <label class="form-check-label" for="isValid">
+                                    Utilisateur valide
+                                </label>
+                                </div>
+                                <div class="form-check">
+                                <input class="form-check-input" value="0" type="radio" name="is_valid" id="isNotValid" {% if user.is_valid == '0' %}
+                                    checked
+                                {% endif %} >
+                                <label class="form-check-label" for="isNotValid">
+                                    Utilisateur pas valide
+                                </label>
+                            </div>
+                        </li>
+                        <li class="list-group-item">Date de création: {{user.created_at|date("d/m/Y")}}</li>
+                    </ul>
+                <input type="text" name="id" class="form-control" aria-describedby="id" style="display: none;" value="{{user.id}}">
+                <input type="submit" name="update_form" class="btn btn-primary btn-lg btn-block mb-2" value="Sauvegarder les modifications">
+                </form>
+                <form id="delete-form" action="" method="POST" role="form">
+                    <input type="text" name="id" class="form-control" aria-describedby="id" style="display: none;" value="{{user.id}}">
+                    <input type="submit" name="delete_form" class="btn btn-danger btn-lg btn-block mt-2" value="Supprimer">
+                </form>
+            </div>
+        </div>
+        
+    {% endfor %}
+{% endblock %}
+
