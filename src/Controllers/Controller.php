@@ -41,7 +41,7 @@ abstract class Controller
     public function redirectNotConnected()
     {
         if ($this->isConnected()) {
-            header('Location: ' . BASE_URL . '/login');
+            header('Location: ' . BASE_URL . 'auth');
         }
     }
 

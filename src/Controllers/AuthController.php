@@ -12,8 +12,8 @@ class AuthController extends Controller
 
     public function index()
     {
+        $this->twig->display("auth/login.html.twig");
 
-        $this->twig->display("login.html.twig");
         //If the user want to connect
         if (isset($_POST['login-submit'])) {
             if (isset($_POST['email']) and isset($_POST['password'])) {
@@ -32,9 +32,16 @@ class AuthController extends Controller
                     $lastname = htmlspecialchars($_POST['lastname']);
                     $email = htmlspecialchars($_POST['email']);
                     $password = htmlspecialchars($_POST['password']);
+
+
                     $user = new UserManager;
-                    $user->create($firstname, $lastname, $email, $password);
-                    header('Location: http://localhost/Formation/OpenClassrooms/P5blog/Blog/login');
+
+                    if ($user->exist($email)) {
+                        var_dump($user->exist($email));
+                        die();
+                    }
+                    // $user->create($firstname, $lastname, $email, $password);
+                    // header('Location: ' . BASE_URL . 'auth');
                 }
             }
         }
@@ -67,6 +74,6 @@ class AuthController extends Controller
     {
         $_SESSION['email'] = $userCredentials[0]['email'];
         $_SESSION['id'] = $userCredentials[0]['id'];
-        header('Location: http://localhost/Formation/OpenClassrooms/P5blog/Blog/');
+        header('Location: ' . BASE_URL);
     }
 }
