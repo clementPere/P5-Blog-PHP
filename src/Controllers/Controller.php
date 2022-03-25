@@ -16,6 +16,7 @@ abstract class Controller
 
     public function __construct()
     {
+        // header('Clear-Site-Data: "cache", "cookies", "storage", "executionContexts"');
 
         //init folder with view file
         $this->loader = new FilesystemLoader(ROOT . '\src\Views');
@@ -26,6 +27,9 @@ abstract class Controller
         //Démarage de la session
         session_start();
 
+        if (isset($_SESSION['email'])) {
+            $this->twig->addGlobal('session', $_SESSION);
+        }
 
         $this->router = new Router('/');
     }

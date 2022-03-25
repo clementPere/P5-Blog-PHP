@@ -19,7 +19,7 @@ $router->post('/auth', "Auth->index");
 $router->get('/logout', "Auth->logout");
 
 
-$router->get('/user/admin', "User->index");
-$router->post('/user/admin', "User->index");
+$router->get('/admin/user', "User->index");
+$router->post('/admin/user', "User->index");
 
 $router->run();

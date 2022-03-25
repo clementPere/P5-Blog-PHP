@@ -1,19 +1,49 @@
 {% extends "base.html.twig" %}
-
+{% block stylesheets %}
+	<link rel="stylesheet" href="assets/css/posts.css">
+{% endblock %}
 {% block title %}
-	Post
+	Articles
 {% endblock %}
 
 {% block body %}
-
-	{% for post in post %}
-		<hr>
-		<p>Titre de l'article =>{{post.title}}</p>
-		<p>Header de l'article =>{{post.header}}</p>
-		<p>Contenu de l'article =>{{post.content}}</p>
-		<p>Auteur de l'article =>{{post.author}}</p>
-		<p>Date de création de l'article =>{{post.created_at}}</p>
-		<p>{{post.User_id.firstname}}
-			<hr>
-		{% endfor %}
-	{% endblock %}
+	{% for post in posts %}
+		<div class="card mb-5 posts">
+			<div class="card-header">
+				<h2>{{post.title}}</h2>
+			</div>
+			<div class="card-body">
+				<blockquote class="blockquote mb-0">
+					<p>{{post.header}}</p>
+					<p>{{post.content}}</p>
+					<footer class="blockquote-footer">Auteur: {{post.author}} <cite title="Source Title">Date de création: {{post.created_at}}</cite></footer>
+						{% for comment in comments %}
+						{% if comment.post_id == post.id %}
+						
+						<div class="card mb-5">
+							<div class="card-header">
+								<p>Auteur du commentaire: {{comment.author}}</p>
+							</div>
+							<div class="card-body">
+								<blockquote class="blockquote mb-0">
+									<p>{{comment.content}}</p>
+									<footer class="blockquote-footer">Auteur: {{comment.author}} <cite title="Source Title">Commentaire ajouté le: {{comment.created_at}}</cite></footer>
+								</blockquote>
+							</div>
+						</div>
+						{% endif %}
+					{% endfor %}
+					<form id="comment" action="" method="POST" role="form">
+						<div class="form-group">
+							<label for="exampleFormControlTextarea1">Ajouter un commentaire à cet article</label>
+							<textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+						</div>
+						
+						<input type="text" name="id" class="form-control" aria-describedby="id" style="display: none;" value="{{user.id}}">
+						<input type="submit" name="comment" class="btn btn-primary" value="Envoyer">
+					</form>
+				</blockquote>
+			</div>
+		</div>
+	{% endfor %}
+{% endblock %}

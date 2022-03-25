@@ -74,6 +74,8 @@ class AuthController extends Controller
     {
         $_SESSION['email'] = $userCredentials[0]['email'];
         $_SESSION['id'] = $userCredentials[0]['id'];
-        header('Location: ' . BASE_URL);
+        $_SESSION['role'] = $userCredentials[0]['role'];
+        $_SESSION['is_valid'] = $userCredentials[0]['is_valid'];
+        echo '<script language="Javascript"> document.location.replace("../Blog"); </script>';
     }
 }

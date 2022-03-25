@@ -2,6 +2,7 @@
 
 namespace App\Controllers;
 
+use App\Models\Commentary;
 use App\Models\Post;
 
 
@@ -10,12 +11,11 @@ class PostController extends Controller
 
     public function index()
     {
-        var_dump("Bonjour " . $_SESSION['email']);
-        $this->redirectNotConnected();
-        $post = Post::getAll('post');
-
+        $posts = Post::getAll('post');
+        $comments = Commentary::getAll('commentary');
         $this->twig->display("post/index.html.twig", [
-            'post' => $post
+            'posts' => $posts,
+            'comments' => $comments
         ]);
     }
 }
