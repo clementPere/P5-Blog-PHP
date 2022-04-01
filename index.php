@@ -13,11 +13,19 @@ $router = new Router($_GET['url']);
  */
 $router->get('/', "Home->index");
 $router->get('/posts', "Post->index");
+$router->post('/posts', "Post->createPost");
 
 $router->get('/auth', "Auth->index");
 $router->post('/auth', "Auth->index");
 $router->get('/logout', "Auth->logout");
 
+$router->get('/user/account', 'UserAccount->index');
+
+$router->get('/contact', 'Contact->index');
+
+
+$router->get('/admin/posts', "AdminPost->index");
+$router->post('/admin/posts', "AdminPost->index");
 
 $router->get('/admin/user', "User->index");
 $router->post('/admin/user', "User->index");

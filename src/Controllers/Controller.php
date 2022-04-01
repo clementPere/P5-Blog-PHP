@@ -23,7 +23,7 @@ abstract class Controller
 
         //init twig environment
         $this->twig = new Environment($this->loader);
-
+        $this->twig->addGlobal('BASE_URL', BASE_URL);
         //Démarage de la session
         session_start();
 

@@ -4,7 +4,7 @@ namespace App\Controllers;
 
 use App\Models\Commentary;
 use App\Models\Post;
-
+use App\Models\PostManager;
 
 class PostController extends Controller
 {

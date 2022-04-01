@@ -13,7 +13,7 @@ class Model
      */
     public static function getAll(string $table): array
     {
-        $req = DBManager::getDb()->prepare('SELECT * FROM ' . $table . ' ORDER BY id ASC');
+        $req = DBManager::getDb()->prepare('SELECT * FROM ' . $table . ' ORDER BY created_at DESC');
         $req->execute();
         return $req->fetchAll();
     }

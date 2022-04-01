@@ -5,7 +5,7 @@ namespace App\Controllers;
 use App\Models\User;
 
 
-class UserAccount extends Controller
+class UserAccountController extends Controller
 {
 
     public function index()
@@ -14,5 +14,8 @@ class UserAccount extends Controller
 
         $user = new User;
         $user = $user->getOneBy('user', 'id', $_SESSION['id']);
+        $this->twig->display("userAccount/index.html.twig", [
+            'user' => $user
+        ]);
     }
 }

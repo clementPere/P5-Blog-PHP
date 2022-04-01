@@ -1,0 +1,126 @@
+{% extends "base.html.twig" %}
+{% block stylesheets %}
+	<link rel="stylesheet" href="../assets/css/posts.css">
+{% endblock %}
+{% block title %}
+	Admin Article
+{% endblock %}
+{% block body %}
+    {% if update_post == true %}
+        <div class="alert alert-success w-100" role="alert">
+    {{message}}  <a href="{{ BASE_URL }}" class="alert-link">Retour à l'accueil</a>
+        </div>
+    {% endif %}
+    {% if update_post == false and message%}
+        <div class="alert alert-danger w-100 scrollBottom" role="alert">
+            {{message}} 
+        </div>
+    {% endif %}
+    <h3 class="text-center">Création d'un nouvel article</h3>
+    <div class="card mb-4 posts" style="width: 80%; margin:auto;">
+    <h3 class="card-header">Création d'un nouvel article</h3>
+        <div class="card-body">
+            <form action="" method="POST">
+                <ul class="list-group list-group-flush">
+                    <li class="list-group-item">
+                        <div class="mb-2 form-group">
+                            <label for="validationCustom01" class="form-label">Titre</label>
+                            <input type="text" name="title" class="form-control" aria-describedby="title" placeholder="Votre titre" required>
+                        </div>
+                    </li>
+                    <li class="list-group-item">
+                        <div class="mb-2 form-group">
+                            <label class="form-label">En-tête</label>
+                            <input type="text" name="header" class="form-control" aria-describedby="header" placeholder="header" required>
+                        </div>
+                    </li>
+                    <li class="list-group-item">
+                        <div class="form-group">
+                                <label for="exampleFormControlTextarea1">Contenu</label>
+                                <textarea class="form-control" name="content" id="exampleFormControlTextarea1" rows="3" placeholder="Exemple de text..." required></textarea> 
+                        </div>
+                    <li class="list-group-item">
+                        <div class="mb-2 form-group">
+                            <label class="form-label">Auteur</label>
+                            <input type="text" name="author" class="form-control" aria-describedby="author" placeholder="Nom de l'auteur" required>
+                        </div>
+                    </li>
+                    <li class="list-group-item">
+                        <div class="mb-2 form-group">
+                            <label class="form-label">Créateur de l'article</label>
+                            <input type="text" readonly name="created_by" class="form-control" aria-describedby="author" value="{{session['email']}}">
+                        </div>
+                    </li>
+                    <input  type="submit" name="create_form" class="save_button_admin_form btn btn-primary btn-lg btn-block mb-2" value="Créer un nouvel article">
+                </ul>
+            </form>
+        </div>
+    </div>
+    <h3 class="text-center" style="width: 80%; margin:auto; margin-top:50px;margin-bottom:30px;">Modification d'un article</h3>
+    {% for post in posts %}
+        <div class="card mb-4 posts" style="width: 80%; margin:auto;">
+        <h3 class="card-header">Modification d'un article</h3>
+            <div class="card-body">
+               <form id="post-form" action="" method="POST" role="form">
+                    <ul class="list-group list-group-flush">
+                        <li class="list-group-item">
+                            <div class="mb-2 form-group">
+                                <label class="form-label">Titre</label>
+                                <input type="text" name="title" class="form-control" aria-describedby="title" value="{{post.title}}" required>
+                            </div>
+                        </li>
+                        <li class="list-group-item">
+                            <div class="form-group">
+                                    <label for="exampleFormControlTextarea1">Contenu</label>
+                                    <textarea class="form-control" name="content" id="exampleFormControlTextarea1" rows="3" required>{{post.content}}</textarea> 
+                            </div>
+                        <li class="list-group-item">
+                            <div class="mb-2 form-group">
+                                <label class="form-label">En-tête</label>
+                                <input type="text" name="header" class="form-control" aria-describedby="header" value="{{post.header}}" required>
+                            </div>
+                        </li>
+                        <li class="list-group-item">
+                            <div class="mb-2 form-group">
+                                <label class="form-label">Auteur</label>
+                                <input type="text" name="author" class="form-control" aria-describedby="author" value="{{post.author}}" required>
+                            </div>
+                        </li>
+                        <li class="list-group-item">
+                        <label class="form-label">Créateur de l'article</label>
+                            <select class="form-select form-select-lg mb-3" name="created_by">
+                                 {% for user in users %}
+                                    {% if user.id == post.User_id %}
+                                        <option selected value="{{user.id}}">{{user.email}}</option>
+                                    {% endif %}
+                                    {% if user.id != post.User_id %}
+                                        <option value="{{user.id}}">{{user.email}}</option>
+                                    {% endif %}
+                                {% endfor %}
+                            </select>
+                        </li>
+                        <li class="list-group-item">
+                            <div class="mb-2 form-group">
+                                <label class="form-label">Date de création</label>
+                                <input type="text" readonly name="created_at" class="form-control" aria-describedby="created_at" value="{{post.created_at}}">
+                            </div>
+                        </li>
+                        <li class="list-group-item">
+                            <div class="mb-2 form-group">
+                                <label class="form-label">Date de dernière mis à jour</label>
+                                <input type="text" readonly name="updated_at" class="form-control" aria-describedby="updated_at" value="{{post.updated_at}}">
+                            </div>
+                        </li>
+                        <hr>
+                        <input type="text" name="id" class="form-control" aria-describedby="id" style="display: none;" value="{{post.id}}">
+                        <input type="submit" name="update_form" class="save_button_admin_form btn btn-primary btn-lg btn-block mb-2" style="width: 30%;margin:auto" value="Sauvegarder les modifications">
+                    </ul>
+                </form>
+                <form id="delete-form" action="" method="POST" role="form">
+                    <input type="text" name="id" class="form-control" aria-describedby="id" style="display: none;" value="{{post.id}}">
+                    <input type="submit" name="delete_form" class="btn btn-danger btn-lg btn-block mt-2" value="Supprimer" style="width: 30%; margin:auto">
+                </form>
+            </div>
+        </div>
+    {% endfor %}
+{% endblock %}

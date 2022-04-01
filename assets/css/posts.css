@@ -4,3 +4,8 @@
     margin-top: 25px;
     width: 80%;
 }
+
+.inputCreate{
+    display: flex;
+    justify-content: right;
+}
