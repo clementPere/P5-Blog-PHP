@@ -13,7 +13,7 @@ $router = new Router($_GET['url']);
  */
 $router->get('/', "Home->index");
 $router->get('/posts', "Post->index");
-$router->post('/posts', "Post->createPost");
+$router->post('/posts/commentary', "Commentary->index");
 
 $router->get('/auth', "Auth->index");
 $router->post('/auth', "Auth->index");

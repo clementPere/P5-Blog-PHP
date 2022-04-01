@@ -14,35 +14,47 @@
 			</div>
 			<div class="card-body">
 				<blockquote class="blockquote mb-0">
-					<p>{{post.header}}</p>
-					<p>{{post.content}}</p>
-					<footer class="blockquote-footer">Auteur: {{post.author}} <cite title="Source Title">Date de création: {{post.created_at}}</cite></footer>
+					<p>Chapô : {{post.header}}</p>
+					{% if detail %}
+						<p>{{post.content}}</p>
+					{% endif %}
+					<footer class="blockquote-footer">Auteur: {{post.author}} <cite title="Source Title">Date de dernière modification: {{post.updated_at}}</cite></footer>
+					{% if detail %}
 						{% for comment in comments %}
-						{% if comment.post_id == post.id %}
-						
-						<div class="card mb-5">
-							<div class="card-header">
-								<p>Auteur du commentaire: {{comment.author}}</p>
+							{% if comment.post_id == post.id %}
+								<div class="card mb-5">
+									<div class="card-header">
+										<p>Auteur du commentaire: {{comment.author}}</p>
+									</div>
+									<div class="card-body">
+										<blockquote class="blockquote mb-0">
+											<p>{{comment.content}}</p>
+											<footer class="blockquote-footer">Auteur: {{comment.author}} <cite title="Source Title">Commentaire ajouté le: {{comment.created_at}}</cite></footer>
+										</blockquote>
+									</div>
+								</div>
+							{% endif %}
+						{% endfor %}
+						<form id="comment" action="{{BASE_URL}}posts/commentary" method="POST" role="form">
+							<div class="form-group">
+								<label for="text">Votre email</label>
+								<input type="text" class="form-control" name="email" id="text" rows="3"></textarea>
 							</div>
-							<div class="card-body">
-								<blockquote class="blockquote mb-0">
-									<p>{{comment.content}}</p>
-									<footer class="blockquote-footer">Auteur: {{comment.author}} <cite title="Source Title">Commentaire ajouté le: {{comment.created_at}}</cite></footer>
-								</blockquote>
+							<div class="form-group">
+								<label for="exampleFormControlTextarea1">Ajouter un commentaire à cet article</label>
+								<textarea class="form-control" name="comment" id="exampleFormControlTextarea1" rows="3"></textarea>
 							</div>
-						</div>
-						{% endif %}
-					{% endfor %}
-					<form id="comment" action="" method="POST" role="form">
-						<div class="form-group">
-							<label for="exampleFormControlTextarea1">Ajouter un commentaire à cet article</label>
-							<textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
-						</div>
-						
-						<input type="text" name="id" class="form-control" aria-describedby="id" style="display: none;" value="{{user.id}}">
-						<input type="submit" name="comment" class="btn btn-primary" value="Envoyer">
-					</form>
+							
+							<input type="submit" name="addComment" class="btn btn-primary" value="Envoyer">
+						</form>
+					{% endif %}
 				</blockquote>
+				{% if detail == false %}
+					<a href="{{BASE_URL}}posts?post={{post.id}}" class="btn btn-primary">Voir le détail de l'article</a>
+				{% endif %}
+				{% if detail %}
+					<a href="{{BASE_URL}}posts" class="btn btn-primary">Retour</a>
+				{% endif %}
 			</div>
 		</div>
 	{% endfor %}
