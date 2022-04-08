@@ -18,17 +18,18 @@ class AdminPostController extends Controller
                 'BASE_URL' => BASE_URL,
             ]);
         }
+
         if ($_SESSION['role'] === 'admin') {
-            if (!isset($_POST['delete_form']) && !isset($_POST['update_form']) && !isset($_POST['create_form'])) {
+            if (!isset($_POST['delete_post']) && !isset($_POST['update_post']) && !isset($_POST['create_post'])) {
                 $this->render();
             }
-            if (isset($_POST['create_form'])) {
+            if (isset($_POST['create_post'])) {
                 $this->createPost();
             }
-            if (isset($_POST['update_form'])) {
+            if (isset($_POST['update_post'])) {
                 $this->updatePost();
             }
-            if (isset($_POST['delete_form'])) {
+            if (isset($_POST['delete_post'])) {
                 $this->deletePost();
             }
         }
@@ -36,16 +37,18 @@ class AdminPostController extends Controller
 
     private function updatePost()
     {
-        $post = new PostManager;
-        $title = htmlspecialchars($_POST['title']);
-        $content = htmlspecialchars($_POST['content']);
-        $header = htmlspecialchars($_POST['header']);
-        $author = htmlspecialchars($_POST['author']);
-        $userId = htmlspecialchars($_POST['created_by']);
-        $postId = htmlspecialchars($_POST['id']);
-        $post->update($title, $content, $header, $author, $userId, $postId);
-        $message = "La modification de l'article a bien été prise en compte";
-        $this->render(true, $message);
+        $post = new Post;
+        $post->update();
+        // $post = new PostManager;
+        // $title = htmlspecialchars($_POST['title']);
+        // $content = htmlspecialchars($_POST['content']);
+        // $header = htmlspecialchars($_POST['header']);
+        // $author = htmlspecialchars($_POST['author']);
+        // $userId = htmlspecialchars($_POST['created_by']);
+        // $postId = htmlspecialchars($_POST['id']);
+        // $post->update($title, $content, $header, $author, $userId, $postId);
+        // $message = "La modification de l'article a bien été prise en compte";
+        // $this->render(true, $message);
     }
 
     private function deletePost()

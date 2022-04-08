@@ -16,10 +16,9 @@
             {{message}} 
         </div>
     {% endif %}
-    <h3 class="text-center">Création d'un nouvel article</h3>
-    <div class="card mb-4 posts" style="width: 80%; margin:auto;">
-    <h3 class="card-header">Création d'un nouvel article</h3>
+    <div class="card mb-4 postsBox" style="width: 80%; margin:auto;">
         <div class="card-body">
+        <h2 class="card-title text-center" >Créer un article</h3>
             <form action="" method="POST">
                 <ul class="list-group list-group-flush">
                     <li class="list-group-item">
@@ -37,7 +36,7 @@
                     <li class="list-group-item">
                         <div class="form-group">
                                 <label for="exampleFormControlTextarea1">Contenu</label>
-                                <textarea class="form-control" name="content" id="exampleFormControlTextarea1" rows="3" placeholder="Exemple de text..." required></textarea> 
+                                <textarea class="form-control" name="content" id="exampleFormControlTextarea1" rows="3" placeholder="Exemple de texte..." required></textarea> 
                         </div>
                     <li class="list-group-item">
                         <div class="mb-2 form-group">
@@ -51,16 +50,16 @@
                             <input type="text" readonly name="created_by" class="form-control" aria-describedby="author" value="{{session['email']}}">
                         </div>
                     </li>
-                    <input  type="submit" name="create_form" class="save_button_admin_form btn btn-primary btn-lg btn-block mb-2" value="Créer un nouvel article">
+                    <hr class="mb-4">
+                    <input  type="submit" name="create_post" class="btn btn-primary btn-lg btn-block mb-2" value="Créer un nouvel article">
                 </ul>
             </form>
         </div>
     </div>
-    <h3 class="text-center" style="width: 80%; margin:auto; margin-top:50px;margin-bottom:30px;">Modification d'un article</h3>
     {% for post in posts %}
-        <div class="card mb-4 posts" style="width: 80%; margin:auto;">
-        <h3 class="card-header">Modification d'un article</h3>
+        <div class="card postsBox mb-4" style="width: 80%; margin:auto;">
             <div class="card-body">
+            <h2 class="card-title text-center" >Modifier l'article : {{post.title}}</h3>
                <form id="post-form" action="" method="POST" role="form">
                     <ul class="list-group list-group-flush">
                         <li class="list-group-item">
@@ -88,7 +87,7 @@
                         </li>
                         <li class="list-group-item">
                         <label class="form-label">Créateur de l'article</label>
-                            <select class="form-select form-select-lg mb-3" name="created_by">
+                            <select class="form-select form-select-lg mb-3" name="User_id">
                                  {% for user in users %}
                                     {% if user.id == post.User_id %}
                                         <option selected value="{{user.id}}">{{user.email}}</option>
@@ -113,12 +112,12 @@
                         </li>
                         <hr>
                         <input type="text" name="id" class="form-control" aria-describedby="id" style="display: none;" value="{{post.id}}">
-                        <input type="submit" name="update_form" class="save_button_admin_form btn btn-primary btn-lg btn-block mb-2" style="width: 30%;margin:auto" value="Sauvegarder les modifications">
+                        <input type="submit" name="update_post" class="save_button_admin_form btn btn-primary btn-lg btn-block mb-2" style="width: 30%;margin:auto" value="Sauvegarder les modifications">
                     </ul>
                 </form>
                 <form id="delete-form" action="" method="POST" role="form">
                     <input type="text" name="id" class="form-control" aria-describedby="id" style="display: none;" value="{{post.id}}">
-                    <input type="submit" name="delete_form" class="btn btn-danger btn-lg btn-block mt-2" value="Supprimer" style="width: 30%; margin:auto">
+                    <input type="submit" name="delete_post" class="btn btn-danger btn-lg btn-block mt-2" value="Supprimer" style="width: 30%; margin:auto">
                 </form>
             </div>
         </div>

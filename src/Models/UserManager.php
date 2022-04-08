@@ -49,13 +49,13 @@ class UserManager extends User
      * @param bool $is_valid
      * 
      */
-    public function update(string $firstname, string $lastname, string $email, string $password, string $role, int $is_valid, $id)
-    {
-        $req = DBManager::getDb()->prepare(
-            "UPDATE user 
-            SET firstname = '$firstname', lastname = '$lastname', email = '$email', `password` = '$password', `role` = '$role', is_valid = '$is_valid'
-            WHERE id = $id"
-        );
-        $req->execute();
-    }
+    // public function update(string $firstname, string $lastname, string $email, string $password, string $role, int $is_valid, $id)
+    // {
+    //     $req = DBManager::getDb()->prepare(
+    //         "UPDATE user 
+    //         SET firstname = '$firstname', lastname = '$lastname', email = '$email', `password` = '$password', `role` = '$role', is_valid = '$is_valid'
+    //         WHERE id = $id"
+    //     );
+    //     $req->execute();
+    // }
 }

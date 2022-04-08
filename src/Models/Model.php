@@ -38,4 +38,53 @@ class Model
         $req = DBManager::getDb()->prepare('DELETE FROM ' . $table . ' WHERE ' . $select . ' = ' . $value);
         $req->execute();
     }
+
+    public function update()
+    {
+
+
+        $this->setValue();
+
+        if ($this->checkIfExist()) {
+            var_dump(serialize($this));
+            var_dump($this->getClassName());
+
+            // $req = DBManager::getDb()->prepare('SELECT * FROM ' . $this->getClassName() . ' WHERE id = ' . $this->getId());
+            $req = DBManager::getDb()->prepare('UPDATE ' . $this->getClassName() . ' SET ' . serialize($this) . ' WHERE id = ' . $this->getId());
+            $req->execute();
+            var_dump($req->fetchAll());
+            return $req->fetchAll();
+            // var_dump(serialize($object));
+
+            // $req = DBManager::getDb()->prepare('UPDATE' . $entity . ' SET ' .  . ' WHERE id = ' . $object->getId());
+        }
+        // var_dump('key : ' . $key . ' value: ' . $value . '<br>');
+    }
+
+    private function setValue()
+    {
+        foreach ($_POST as $key => $value) {
+            $set = 'set' . ucfirst($key);
+            $value = htmlspecialchars($value);
+            $explode = explode('update', $key);
+            if ($key !== 'created_at' and substr($explode[0], 0)) {
+                $this->$set($value);
+            }
+        }
+    }
+
+    private function getClassName()
+    {
+        $path = explode('\\', get_class($this));
+        return strtolower(end($path));
+    }
+
+    private function checkIfExist()
+    {
+        if ($this->getOneBy('post', 'id', $this->getId())) {
+            var_dump('ok');
+            return true;
+        }
+        return false;
+    }
 }

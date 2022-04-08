@@ -11,15 +11,12 @@ class Post extends Model
     private string $content;
     private string $header;
     private string $author;
-    private DateTimeImmutable $created_at;
-    private DateTimeImmutable $updated_at;
+    private string $user_id;
+    private string $created_at;
+    private string $updated_at;
 
 
-    public function __construct()
-    {
-        $this->created_at = new DateTimeImmutable('now');
-        $this->updated_at = new DateTimeImmutable('now');
-    }
+
 
     /**
      * Get the value of id
@@ -157,6 +154,26 @@ class Post extends Model
     public function setTitle($title)
     {
         $this->title = $title;
+
+        return $this;
+    }
+
+    /**
+     * Get the value of user_id
+     */
+    public function getUser_id()
+    {
+        return $this->user_id;
+    }
+
+    /**
+     * Set the value of user_id
+     *
+     * @return  self
+     */
+    public function setUser_id($user_id)
+    {
+        $this->user_id = $user_id;
 
         return $this;
     }
