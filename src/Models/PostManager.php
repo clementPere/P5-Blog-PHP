@@ -14,14 +14,14 @@ class PostManager extends Post
     }
 
 
-    public function update(string $title, string $content, string $header, string $author, string $user_id, $id)
+    public function updatePost(string $title, string $content, string $header, string $author, string $user_id, $id)
     {
         $date = new DateTime('now');
         $date = $date->format('Y-m-d H:i:s');
 
         $req = DBManager::getDb()->prepare(
             "UPDATE post 
-            SET title = '$title', content = '$content', header = '$header', `author` = '$author', `user_id` = '$user_id', `updated_at` = '$date'
+            SET title = '$title', content = '$content', header = '$header', `author` = '$author', `User_id` = '$user_id', `updated_at` = '$date'
             WHERE id = $id"
         );
         $req->execute();

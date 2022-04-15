@@ -1,0 +1,76 @@
+{% extends "base.html.twig" %}
+{% block stylesheets %}
+	<link rel="stylesheet" href="../assets/css/posts.css">
+{% endblock %}
+{% block title %}
+	Admin Commentaire
+{% endblock %}
+{% block body %}
+    {% if update_comment == true %}
+        <div class="alert alert-success w-100" role="alert">
+    {{message}}  <a href="{{ BASE_URL }}" class="alert-link">Retour à l'accueil</a>
+        </div>
+    {% endif %}
+    {% if update_comment == false and message%}
+        <div class="alert alert-danger w-100 scrollBottom" role="alert">
+            {{message}} 
+        </div>
+    {% endif %}
+    {% for comment in comments %}
+        <div class="card postsBox mb-4" style="width: 80%; margin:auto;">
+            <div class="card-body">
+            <h2 class="card-title text-center" >Modifier le commentaire de {{comment.author}}</h3>
+               <form id="post-form" action="" method="POST" role="form">
+                    <ul class="list-group list-group-flush">
+                        <li class="list-group-item">
+                            <div class="mb-2 form-group">
+                                <label class="form-label">Auteur</label>
+                                <input type="text" name="author" class="form-control" aria-describedby="author" value="{{comment.author}}" required>
+                            </div>
+                        </li>
+                        <li class="list-group-item">
+                            <div class="form-group">
+                                    <label for="exampleFormControlTextarea1">Contenu</label>
+                                    <textarea class="form-control" name="content" id="exampleFormControlTextarea1" rows="3" required>{{comment.content}}</textarea> 
+                            </div>
+                        </li>
+                        <li class="list-group-item"><hr>
+                        <label class="form-label">Validité</label>
+                            <div class="form-check">
+                                <input class="form-check-input" value="1" type="radio" name="is_valid" id="isValid" {% if comment.is_valid == '1' %}
+                                    checked
+                                {% endif %}>
+                                <label class="form-check-label" for="isValid">
+                                    Commentaire valide
+                                </label>
+                                </div>
+                                <div class="form-check">
+                                <input class="form-check-input" value="0" type="radio" name="is_valid" id="isNotValid" {% if comment.is_valid == '0' %}
+                                    checked
+                                {% endif %} >
+                                <label class="form-check-label" for="isNotValid">
+                                    Commentaire non valide
+                                </label>
+                            </div>
+                        </li>
+                        <li class="list-group-item">
+                            <div class="mb-2 form-group">
+                                <label class="form-label">Date de création</label>
+                                <input type="text" readonly name="created_at" class="form-control" aria-describedby="created_at" value="{{comment.created_at}}">
+                            </div>
+                        </li>
+
+                       
+                        <hr>
+                        <input type="text" name="id" class="form-control" aria-describedby="id" style="display: none;" value="{{comment.id}}">
+                        <input type="submit" name="update_comment" class="save_button_admin_form btn btn-primary btn-lg btn-block mb-2" style="width: 30%;margin:auto" value="Sauvegarder les modifications">
+                    </ul>
+                </form>
+                <form id="delete-form" action="" method="POST" role="form">
+                    <input type="text" name="id" class="form-control" aria-describedby="id" style="display: none;" value="{{comment.id}}">
+                    <input type="submit" name="delete_comment" class="btn btn-danger btn-lg btn-block mt-2" value="Supprimer" style="width: 30%; margin:auto">
+                </form>
+            </div>
+        </div>
+    {% endfor %}
+{% endblock %}

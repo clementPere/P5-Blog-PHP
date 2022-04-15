@@ -44,7 +44,7 @@ class Model
 
 
         $this->setValue();
-
+        var_dump($this->setValue());
         if ($this->checkIfExist()) {
             var_dump(serialize($this));
             var_dump($this->getClassName());

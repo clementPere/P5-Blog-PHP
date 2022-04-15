@@ -23,6 +23,8 @@ $router->get('/user/account', 'UserAccount->index');
 
 $router->get('/contact', 'Contact->index');
 
+$router->get('/admin/comments', "AdminCommentary->index");
+$router->post('/admin/comments', "AdminCommentary->index");
 
 $router->get('/admin/posts', "AdminPost->index");
 $router->post('/admin/posts', "AdminPost->index");
