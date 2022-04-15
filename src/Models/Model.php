@@ -44,16 +44,18 @@ class Model
 
 
         $this->setValue();
-        var_dump($this->setValue());
+
+
+
         if ($this->checkIfExist()) {
-            var_dump(serialize($this));
-            var_dump($this->getClassName());
+            // var_dump(serialize($this));
+            // var_dump($this->getClassName());
 
             // $req = DBManager::getDb()->prepare('SELECT * FROM ' . $this->getClassName() . ' WHERE id = ' . $this->getId());
-            $req = DBManager::getDb()->prepare('UPDATE ' . $this->getClassName() . ' SET ' . serialize($this) . ' WHERE id = ' . $this->getId());
-            $req->execute();
-            var_dump($req->fetchAll());
-            return $req->fetchAll();
+            // $req = DBManager::getDb()->prepare('UPDATE ' . $this->getClassName() . ' SET ' . $this . ' WHERE id = ' . $this->getId());
+            // $req->execute();
+            // var_dump($req->fetchAll());
+            // return $req->fetchAll();
             // var_dump(serialize($object));
 
             // $req = DBManager::getDb()->prepare('UPDATE' . $entity . ' SET ' .  . ' WHERE id = ' . $object->getId());
@@ -65,10 +67,12 @@ class Model
     {
         foreach ($_POST as $key => $value) {
             $set = 'set' . ucfirst($key);
+            $get = 'get' . ucfirst($key);
             $value = htmlspecialchars($value);
             $explode = explode('update', $key);
             if ($key !== 'created_at' and substr($explode[0], 0)) {
                 $this->$set($value);
+                var_dump($this->$get());
             }
         }
     }
@@ -81,8 +85,7 @@ class Model
 
     private function checkIfExist()
     {
-        if ($this->getOneBy('post', 'id', $this->getId())) {
-            var_dump('ok');
+        if ($this->getOneBy($this->getClassName(), 'id', $this->getId())) {
             return true;
         }
         return false;
