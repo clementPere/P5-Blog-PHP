@@ -41,53 +41,62 @@ class Model
 
     public function update()
     {
-
-
-        $this->setValue();
-
-
-
-        if ($this->checkIfExist()) {
-            // var_dump(serialize($this));
-            // var_dump($this->getClassName());
-
-            // $req = DBManager::getDb()->prepare('SELECT * FROM ' . $this->getClassName() . ' WHERE id = ' . $this->getId());
-            // $req = DBManager::getDb()->prepare('UPDATE ' . $this->getClassName() . ' SET ' . $this . ' WHERE id = ' . $this->getId());
-            // $req->execute();
-            // var_dump($req->fetchAll());
-            // return $req->fetchAll();
-            // var_dump(serialize($object));
-
-            // $req = DBManager::getDb()->prepare('UPDATE' . $entity . ' SET ' .  . ' WHERE id = ' . $object->getId());
-        }
-        // var_dump('key : ' . $key . ' value: ' . $value . '<br>');
+        $req = DBManager::getDb()->prepare($this->setUpdateRequest());
+        $req->execute();
     }
 
-    private function setValue()
+
+    public function create()
     {
+        $req = DBManager::getDb()->prepare($this->setCreateRequest());
+        $req->execute();
+    }
+
+    public function setCreateRequest()
+    {
+        $champ = '';
+        $data = '';
         foreach ($_POST as $key => $value) {
             $set = 'set' . ucfirst($key);
             $get = 'get' . ucfirst($key);
             $value = htmlspecialchars($value);
             $explode = explode('update', $key);
-            if ($key !== 'created_at' and substr($explode[0], 0)) {
+            if ($key !== 'created_at' and substr($explode[0], 0) and $key !== 'id' and $key !== 'create_post' and $key !== 'addComment') {
+                if ($key == 'User_id') {
+                    $value = $_SESSION['id'];
+                }
                 $this->$set($value);
-                var_dump($this->$get());
+                $champ .= $key . ', ';
+                $data .= "'" . $this->$get() . "', ";
             }
         }
+        return 'INSERT INTO ' . $this->getClassName() . ' (' . substr($champ, 0, -2) . ") VALUES (" . substr($data, 0, -2) . ")";
+    }
+
+    private function setUpdateRequest(): string
+    {
+        $sql = 'UPDATE ' . $this->getClassName() . ' SET ';
+        foreach ($_POST as $key => $value) {
+            $set = 'set' . ucfirst($key);
+            $get = 'get' . ucfirst($key);
+            $value = htmlspecialchars($value);
+            $explode = explode('update', $key);
+            if ($key !== 'created_at' and substr($explode[0], 0) and $key !== 'id') {
+                $this->$set($value);
+                $sql .= $key . "='" . $this->$get() . "', ";
+            }
+            if ($key == 'id') {
+                $id = $value;
+            }
+        }
+        $sql = substr($sql, 0, -2);
+        $sql .= "WHERE id = $id";
+        return $sql;
     }
 
     private function getClassName()
     {
         $path = explode('\\', get_class($this));
         return strtolower(end($path));
-    }
-
-    private function checkIfExist()
-    {
-        if ($this->getOneBy($this->getClassName(), 'id', $this->getId())) {
-            return true;
-        }
-        return false;
     }
 }

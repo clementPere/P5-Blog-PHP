@@ -1,0 +1,14 @@
+{% extends "base.html.twig" %}
+{% block stylesheets %}
+	<link rel="stylesheet" href="assets/css/posts.css">
+{% endblock %}
+{% block title %}
+	Articles
+{% endblock %}
+
+{% block body %}
+    <div class="alert alert-success w-100" role="alert">
+    Votre commentaire est maintenant soumis à vérification par notre équipe afin de valider la conformité du contenu !
+    <a href="{{ BASE_URL }}" class="alert-link">Retour à l'accueil</a>
+    </div>
+{% endblock %}

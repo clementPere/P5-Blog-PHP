@@ -46,7 +46,10 @@ class User extends Model
      */
     public function getIs_valid()
     {
-        return $this->is_valid;
+        if (!$this->is_valid) {
+            return 0;
+        }
+        return 1;
     }
 
     /**
@@ -66,7 +69,8 @@ class User extends Model
      */
     public function getRole()
     {
-        return $this->role;
+
+        return $this->role[0];
     }
 
     /**
@@ -76,7 +80,8 @@ class User extends Model
      */
     public function setRole($role)
     {
-        $this->role = $role;
+        $array = explode(",", $role);
+        $this->role = $array;
 
         return $this;
     }

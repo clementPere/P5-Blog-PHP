@@ -37,16 +37,8 @@ class AdminPostController extends Controller
 
     private function updatePost()
     {
-        // $post = new Post;
-        // $post->update();
-        $post = new PostManager;
-        $title = htmlspecialchars($_POST['title']);
-        $content = htmlspecialchars($_POST['content']);
-        $header = htmlspecialchars($_POST['header']);
-        $author = htmlspecialchars($_POST['author']);
-        $userId = htmlspecialchars($_POST['created_by']);
-        $postId = htmlspecialchars($_POST['id']);
-        $post->updatePost($title, $content, $header, $author, $userId, $postId);
+        $post = new Post;
+        $post->update();
         $message = "La modification de l'article a bien été prise en compte";
         $this->render(true, $message);
     }
@@ -69,12 +61,8 @@ class AdminPostController extends Controller
                 return;
             }
         }
-        $post = new PostManager;
-        $title = htmlspecialchars($_POST['title']);
-        $header = htmlspecialchars($_POST['header']);
-        $content = htmlspecialchars($_POST['content']);
-        $author = htmlspecialchars($_POST['author']);
-        $post->create($author, $content, $header, $title, $_SESSION['id']);
+        $post = new Post;
+        $post->create();
         $message = "La création de votre article a bien été sauvegardé ! Vous pouvez le modifier à tout moment sur cette même page.";
         $this->render(true, $message);
     }

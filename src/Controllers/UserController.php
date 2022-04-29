@@ -40,14 +40,8 @@ class UserController extends Controller
     public function updateUser()
     {
         if (isset($_POST['update_form'])) {
-            $user = new UserManager;
-            $firstname = htmlspecialchars($_POST['firstname']);
-            $lastname = htmlspecialchars($_POST['lastname']);
-            $email = htmlspecialchars($_POST['email']);
-            $password = htmlspecialchars($_POST['password']);
-            $role = htmlspecialchars($_POST['role']);
-            $is_valid = htmlspecialchars($_POST['is_valid']);
-            $user->update($firstname, $lastname, $email, $password, $role, $is_valid, $_POST['id']);
+            $user = new User;
+            $user->update();
             $this->render(true);
         }
     }

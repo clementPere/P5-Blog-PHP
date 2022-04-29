@@ -36,12 +36,8 @@ class AdminCommentaryController extends Controller
 
     private function updateComment()
     {
-        $comment = new CommentaryManager;
-        $author = htmlspecialchars($_POST['author']);
-        $content = htmlspecialchars($_POST['content']);
-        $is_valid = htmlspecialchars($_POST['is_valid']);
-        $id = htmlspecialchars($_POST['id']);
-        $comment->updateComment($author, $content, $is_valid, $id);
+        $comment = new Commentary;
+        $comment->update();
         $message = "La modification de l'article a bien été prise en compte";
         $this->render(true, $message);
     }

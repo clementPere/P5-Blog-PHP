@@ -10,13 +10,11 @@ class CommentaryController extends Controller
 
     public function index()
     {
+
         if (isset($_POST['addComment'])) {
-            $email = $_POST['email'];
-            $comment = $_POST['comment'];
-            $postId = $_POST['postId'];
-            $commentary = new CommentaryManager;
-            $commentary->create($email, $comment, $postId);
-            var_dump($_POST);
+            $commentary = new Commentary;
+            $commentary->create();
+            return $this->twig->display("post/newCommentary.html.twig");
         }
     }
 }
