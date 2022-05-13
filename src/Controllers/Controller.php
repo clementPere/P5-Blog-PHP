@@ -16,7 +16,7 @@ abstract class Controller
 
     public function __construct()
     {
-        // header('Clear-Site-Data: "cache", "cookies", "storage", "executionContexts"');
+        header('Clear-Site-Data: "cache", "cookies", "storage", "executionContexts"');
 
         //init folder with view file
         $this->loader = new FilesystemLoader(ROOT . '\src\Views');
