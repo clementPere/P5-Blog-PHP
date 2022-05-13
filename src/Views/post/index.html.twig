@@ -53,7 +53,8 @@
 							<input type="text" name="is_valid" class="form-control" aria-describedby="id" style="display: none;" value="0">
 							<input type="text" name="post_User_id" class="form-control" aria-describedby="id" style="display: none;" value="{{post.User_id}}">
 							<input type="text" name="post_id" class="form-control" aria-describedby="id" style="display: none;" value="{{post.id}}">
-							<input type="submit" name="addComment" class="btn btn-success" value="Envoyer">
+							<div class="d-flex flex-row-reverse">
+								<input type="submit" name="addComment" class="btn btn-success" value="Envoyer">
 						</form>
 					{% endif %}
 				</blockquote>
@@ -61,7 +62,8 @@
 					<a href="{{BASE_URL}}posts?post={{post.id}}" class="btn btn-success">Voir le détail de l'article</a>
 				{% endif %}
 				{% if detail %}
-					<a href="{{BASE_URL}}posts" class="btn btn-success">Retour</a>
+						<a href="{{BASE_URL}}posts" class="btn btn-outline-success">Retour à la liste des articles</a>
+					</div>
 				{% endif %}
 			</div>
 		</div>

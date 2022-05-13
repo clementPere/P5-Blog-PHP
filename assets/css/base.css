@@ -21,7 +21,7 @@ body {
 
     /* annimation */
     overflow: hidden;
-    transition-duration: 0.6s;
+    transition-duration: 0.5s;
     transition-property: transform;
 }
 
