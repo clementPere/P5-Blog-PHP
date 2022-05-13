@@ -1,7 +1,73 @@
 {% extends "base.html.twig" %}
+{% block stylesheets %}
+	<link rel="stylesheet" href="assets/css/home.css">
+{% endblock %}
 {% block title %}
 	Accueil
 {% endblock %}
 {% block body %}
-	<h1>Bonsoir bienvue sur twig</h1>
+
+	<div class="text-center">
+		<div class="baniere">
+			<div class="baniereContent">
+				<div class="mask myName">
+					<div class="text-white">
+						<h1 class="mb-3">Clément Péré</h1>
+						
+						<h4 class="mb-4">Développeur d'application web - 
+							<a href="https://openclassrooms.com/fr/paths/59-developpeur-dapplication-php-symfony" target="_blank" class="text-success">PHP/SYMFONY</a>
+							<img src="assets/images/logo.png" style="width:50px;height:50px;">
+						</h4>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="d-flex flex-column justify-content-center align-items-center">
+			<div class="mask description">
+				<div class="d-flex justify-content-center align-items-center">
+					<div class="contentDescription">
+						<h2 class="mb-3">Bienvenue sur mon blog</h2>
+						<p class="mb-4 text-justify">Depuis 2020 je suis à fond dans le développement web j'ai passé 1 an dans un centre de formation de développeur web et web mobile
+						ce qui m'a apporté une bonne base pour commencer la formation de développeur d'application PHP/Symfony chez Openclassrooms.
+						J'ai commencé cette formation en alternance dans une petite entreprise d'immobilier sur Montpellier pendant 8 mois.
+						Je suis actuellement chez TotalEnergies jusqu'au 22 mars 2023.
+						</p>
+						<p class="mb-4 text-justify">Si vous le désirez vous pouvez consulter nos articles et laisser un commentaire à condition d'avoir un compte pour cela vous pouvez vous rendre <a href="{{ BASE_URL }}auth" target="_blank" class="text-success">sur ce lien !</a>
+						Votre commentaire sera validé sous 24h par nos modérateurs si celui-ci est conforme à nos règles.</p>
+						<p class="mb-4 text-justify"></p>
+						<h3 class="font-weight-bold">A propos de moi<h3>
+						<a
+							class="btn btn-outline-success btn-lg m-2"
+							href="https://github.com/clementPere?tab=repositories"
+							role="button"
+							rel="nofollow"
+							target="_blank"
+						>Github</a
+						>
+						<a
+							class="btn btn-outline-success btn-lg m-2"
+							href="https://www.linkedin.com/in/cl%C3%A9ment-p%C3%A9r%C3%A9-10749819a/"
+							target="_blank"
+							role="button"
+						>Linkedin</a
+						>
+						<a
+							class="btn btn-outline-success btn-lg m-2"
+							href="https://www.linkedin.com/in/cl%C3%A9ment-p%C3%A9r%C3%A9-10749819a/"
+							target="_blank"
+							role="button"
+						>Télécharger mon CV</a
+						>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="separationForm d-flex justify-content-center">
+			<h3>Me contacter</h3> 
+		</div>
+		{% include "contact/index.html.twig" %}
+	</div>
+	
+	
+
 {% endblock %}

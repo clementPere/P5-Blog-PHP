@@ -15,7 +15,8 @@
         <div class="card mb-4 usersBox" style="width: 80%; margin:auto;">
             {# <img src="../assets/images/user.png" class="card-img-top" alt="User image" style="background-color:grey;"> #}
             <div class="card-body">
-               <form id="login-form" action="" method="POST" role="form">
+                <h2 class="card-title text-center" >Modifier le contact</h2>
+                <form id="login-form" action="" method="POST" role="form">
                     <ul class="list-group list-group-flush">
                         <li class="list-group-item">
                         <div class="mb-1 form-group">
@@ -87,11 +88,11 @@
                         <li class="list-group-item">Date de création: {{user.created_at|date("d/m/Y")}}</li>
                     </ul>
                 <input type="text" name="id" class="form-control" aria-describedby="id" style="display: none;" value="{{user.id}}">
-                <input type="submit" name="update_form" class="btn btn-primary btn-lg btn-block mb-2" value="Sauvegarder les modifications">
+                <input type="submit" name="update_form" class="btn btn-success btn-lg btn-block mb-2" style="width: 30%;margin:auto" value="Sauvegarder les modifications">
                 </form>
                 <form id="delete-form" action="" method="POST" role="form">
                     <input type="text" name="id" class="form-control" aria-describedby="id" style="display: none;" value="{{user.id}}">
-                    <input type="submit" name="delete_form" class="btn btn-danger btn-lg btn-block mt-2" value="Supprimer">
+                    <input type="submit" name="delete_form" class="btn btn-danger btn-lg btn-block mt-2" style="width: 30%;margin:auto" value="Supprimer">
                 </form>
             </div>
         </div>

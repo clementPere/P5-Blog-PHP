@@ -1,9 +1,31 @@
 @import url('https://fonts.googleapis.com/css?family=Quicksand&display=swap');
 
-*{
+* {
     font-size: 18px;
     font-family: 'Quicksand', sans-serif;
 }
-body{
-     background: #edf1f5;
+
+body {
+    background: #edf1f5;
+}
+
+.navbar {
+    margin-bottom: 0px;
+}
+
+.navbar-brand {
+    background-image: url("../images/logo.png");
+    background-size: cover;
+    background-position: center center;
+    width: 5%;
+
+    /* annimation */
+    overflow: hidden;
+    transition-duration: 0.6s;
+    transition-property: transform;
+}
+
+.navbar-brand:hover {
+    transform: rotate(360deg);
+    -webkit-transform: rotate(360deg);
 }

@@ -1,29 +1,31 @@
-{% extends "base.html.twig" %}
+
 {% block stylesheets %}
 <link rel="stylesheet" href="assets/css/contactForm.css">
 {% endblock %}
 {% block body %}
        
     <form>
-        <div class="form-group">
-            <label for="exampleFormControlInput1">Addresse email</label>
-            <input type="email" readonly class="form-control" id="exampleFormControlInput1" placeholder="{{session['email']}}">
+        <div class="form-row emailAndSelect">
+            <div class="form-group col-md-6">
+                <label for="exampleFormControlInput1">Addresse email</label>
+                <input type="email" class="form-control" id="exampleFormControlInput1" placeholder="{{session['email']}}">
+            </div>
+            <div class="form-group col-md-6">
+                <label for="exampleFormControlSelect1">Votre demande concerne</label>
+                <select class="form-control" id="exampleFormControlSelect1">
+                <option>Une validation de votre commentaire</option>
+                <option>Augmentez vos privilèges en passent administrateurs</option>
+                <option>Une remarque sur un utilisateur</option>
+                <option>Une remarque sur un commentaire</option>
+                <option>Une remarque sur un article</option>
+                <option>Autre</option>
+                </select>
+            </div>
         </div>
-        <div class="form-group">
-            <label for="exampleFormControlSelect1">Votre demande concerne</label>
-            <select class="form-control" id="exampleFormControlSelect1">
-            <option>Une validation de votre commentaire</option>
-            <option>Augmentez vos privilèges en passent administrateurs</option>
-            <option>Une remareque sur un utilisateur</option>
-            <option>Une remareque sur un commentaire</option>
-            <option>Une remareque sur un article</option>
-            <option>Autre</option>
-            </select>
-        </div>
-        <div class="form-group">
+        <div class="form-group content">
             <label for="exampleFormControlTextarea1">Votre message</label>
             <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" placeholder="Exemple de message..."></textarea>
         </div>
-         <button type="submit" class="btn btn-primary">Submit</button>
+         <button type="submit" class="btn btn-success">Envoyer</button>
     </form>
 {% endblock %}

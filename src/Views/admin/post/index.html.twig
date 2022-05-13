@@ -18,7 +18,7 @@
     {% endif %}
     <div class="card mb-4 postsBox" style="width: 80%; margin:auto;">
         <div class="card-body">
-        <h2 class="card-title text-center" >Créer un article</h3>
+        <h2 class="card-title text-center" >Créer un article</h2>
             <form action="" method="POST">
                 <ul class="list-group list-group-flush">
                     <li class="list-group-item">
@@ -51,7 +51,7 @@
                         </div>
                     </li>
                     <hr class="mb-4">
-                    <input  type="submit" name="create_post" class="btn btn-primary btn-lg btn-block mb-2" value="Créer un nouvel article">
+                    <input  type="submit" name="create_post" class="btn btn-success btn-lg btn-block mb-2" value="Créer un nouvel article">
                 </ul>
             </form>
         </div>
@@ -112,7 +112,7 @@
                         </li>
                         <hr>
                         <input type="text" name="id" class="form-control" aria-describedby="id" style="display: none;" value="{{post.id}}">
-                        <input type="submit" name="update_post" class="save_button_admin_form btn btn-primary btn-lg btn-block mb-2" style="width: 30%;margin:auto" value="Sauvegarder les modifications">
+                        <input type="submit" name="update_post" class="save_button_admin_form btn btn-success btn-lg btn-block mb-2" style="width: 30%;margin:auto" value="Sauvegarder les modifications">
                     </ul>
                 </form>
                 <form id="delete-form" action="" method="POST" role="form">

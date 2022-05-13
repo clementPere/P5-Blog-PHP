@@ -13,8 +13,11 @@
 				<h2>{{post.title}}</h2>
 			</div>
 			<div class="card-body">
+				{% if detail %}
+					<div class="baniere"></div>
+				{% endif %}
 				<blockquote class="blockquote mb-0">
-					<p>Chapô : {{post.header}}</p>
+					<p>En-tête : {{post.header}}</p>
 					{% if detail %}
 						<p>{{post.content}}</p>
 					{% endif %}
@@ -50,15 +53,15 @@
 							<input type="text" name="is_valid" class="form-control" aria-describedby="id" style="display: none;" value="0">
 							<input type="text" name="post_User_id" class="form-control" aria-describedby="id" style="display: none;" value="{{post.User_id}}">
 							<input type="text" name="post_id" class="form-control" aria-describedby="id" style="display: none;" value="{{post.id}}">
-							<input type="submit" name="addComment" class="btn btn-primary" value="Envoyer">
+							<input type="submit" name="addComment" class="btn btn-success" value="Envoyer">
 						</form>
 					{% endif %}
 				</blockquote>
 				{% if detail == false %}
-					<a href="{{BASE_URL}}posts?post={{post.id}}" class="btn btn-primary">Voir le détail de l'article</a>
+					<a href="{{BASE_URL}}posts?post={{post.id}}" class="btn btn-success">Voir le détail de l'article</a>
 				{% endif %}
 				{% if detail %}
-					<a href="{{BASE_URL}}posts" class="btn btn-primary">Retour</a>
+					<a href="{{BASE_URL}}posts" class="btn btn-success">Retour</a>
 				{% endif %}
 			</div>
 		</div>

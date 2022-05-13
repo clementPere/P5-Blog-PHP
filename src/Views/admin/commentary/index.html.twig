@@ -19,7 +19,8 @@
     {% for comment in comments %}
         <div class="card postsBox mb-4" style="width: 80%; margin:auto;">
             <div class="card-body">
-            <h2 class="card-title text-center" >Modifier le commentaire de {{comment.author}}</h3>
+            
+            <h2 class="card-title text-center" >Modifier le commentaire de {{comment.author}}</h2>
                <form id="post-form" action="" method="POST" role="form">
                     <ul class="list-group list-group-flush">
                         <li class="list-group-item">
@@ -63,12 +64,12 @@
                        
                         <hr>
                         <input type="text" name="id" class="form-control" aria-describedby="id" style="display: none;" value="{{comment.id}}">
-                        <input type="submit" name="update_comment" class="save_button_admin_form btn btn-primary btn-lg btn-block mb-2" style="width: 30%;margin:auto" value="Sauvegarder les modifications">
+                        <input type="submit" name="update_comment" class="save_button_admin_form btn btn-success btn-lg btn-block mb-2" style="width: 30%;margin:auto" value="Sauvegarder les modifications">
                     </ul>
                 </form>
                 <form id="delete-form" action="" method="POST" role="form">
                     <input type="text" name="id" class="form-control" aria-describedby="id" style="display: none;" value="{{comment.id}}">
-                    <input type="submit" name="delete_comment" class="btn btn-danger btn-lg btn-block mt-2" value="Supprimer" style="width: 30%; margin:auto">
+                    <input type="submit" name="delete_comment" class="btn btn-danger btn-lg btn-block mt-2" value="Supprimer ce commentaire" style="width: 30%; margin:auto">
                 </form>
             </div>
         </div>

@@ -1,0 +1,59 @@
+* {
+    margin: 0px;
+    padding: 0px;
+}
+
+.baniere {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    min-height: 100vh;
+    background-image: url('../images/baniere2.jpg');
+    background-size: cover;
+    background-position: center center;
+    box-shadow: rgb(38, 57, 77) 0px 20px 30px -10px;
+}
+
+.myName {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 50%;
+    background-color: rgba(0, 0, 0, 0.6);
+    width: 100%;
+}
+
+.baniereContent {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+}
+
+.description {
+    background-color: rgba(255, 255, 255, 0.801);
+    box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px, rgba(0, 0, 0, 0.3) 0px 30px 60px -30px;
+    margin: 50px;
+    transition: transform .5s;
+    overflow: hidden;
+}
+
+.contentDescription>p {
+    padding-right: 20px;
+    padding-left: 20px;
+}
+
+.separationForm {
+    background-image: url("../images/baniere.jpg");
+    background-size: 100%;
+    background-repeat: no-repeat;
+    background-position: center center;
+    height: 25vh;
+    align-items: center;
+    color: white;
+}
+
+.description:hover {
+    /* Safari 3-8 */
+    transform: scale(1.05) translate(0px);
+}
