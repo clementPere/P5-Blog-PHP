@@ -61,13 +61,14 @@ class Model
             $get = 'get' . ucfirst($key);
             $value = htmlspecialchars($value);
             $explode = explode('update', $key);
-            if ($key !== 'created_at' and substr($explode[0], 0) and $key !== 'id' and $key !== 'create_post' and $key !== 'addComment') {
+            $value = str_replace("'", "\'", $value);
+            if ($key !== 'created_at' and substr($explode[0], 0) and $key !== 'id' and $key !== 'create_post' and $key !== 'addComment' and $key !== 'confirm-password' and $key !== 'register-submit') {
                 if ($key == 'User_id') {
                     $value = $_SESSION['id'];
                 }
                 $this->$set($value);
                 $champ .= $key . ', ';
-                $data .= "'" . $this->$get() . "', ";
+                $data .= "'" . $this->$get()  . "', ";
             }
         }
         return 'INSERT INTO ' . $this->getClassName() . ' (' . substr($champ, 0, -2) . ") VALUES (" . substr($data, 0, -2) . ")";
@@ -80,6 +81,7 @@ class Model
             $set = 'set' . ucfirst($key);
             $get = 'get' . ucfirst($key);
             $value = htmlspecialchars($value);
+            $value = str_replace("'", "\'", $value);
             $explode = explode('update', $key);
             if ($key !== 'created_at' and substr($explode[0], 0) and $key !== 'id') {
                 $this->$set($value);

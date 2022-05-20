@@ -78,6 +78,7 @@ class Commentary extends Model
      */
     public function setContent($content)
     {
+
         $this->content = $content;
 
         return $this;

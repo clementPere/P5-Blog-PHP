@@ -12,7 +12,10 @@ class AuthController extends Controller
 
     public function index()
     {
-        $this->twig->display("auth/login.html.twig");
+        if (!isset($_POST['login-submit']) && !isset($_POST['register-submit'])) {
+            $this->render();
+        }
+
 
         //If the user want to connect
         if (isset($_POST['login-submit'])) {
@@ -33,21 +36,27 @@ class AuthController extends Controller
                     $email = htmlspecialchars($_POST['email']);
                     $password = htmlspecialchars($_POST['password']);
 
-
-                    $user = new UserManager;
-
-                    if ($user->exist($email)) {
-                        var_dump($user->exist($email));
-                        die();
+                    if ($this->checkAlreadyExist($email)) {
+                        $this->render(false, "cet email est déjà utilisé. merci d'en saisir un nouveau");
+                    } else {
+                        $user = new User;
+                        $user->create($firstname, $lastname, $email, $password);
+                        return $this->render(true, "Votre Compte à bien été ajouté");
                     }
-                    // $user->create($firstname, $lastname, $email, $password);
-                    // header('Location: ' . BASE_URL . 'auth');
                 }
             }
         }
     }
 
 
+    private function checkAlreadyExist($email)
+    {
+        $user = new UserManager;
+        if ($user->alreadyInUse($email)) {
+            return true;
+        }
+        return false;
+    }
 
     /**
      * @param string $email
@@ -64,6 +73,14 @@ class AuthController extends Controller
             $this->connectUser($userCredentials);
         }
         return false;
+    }
+
+    private function render($newUser = false, $message = "")
+    {
+        $this->twig->display("auth/login.html.twig", [
+            'newUser' => $newUser,
+            'message' => $message,
+        ]);
     }
 
     /**

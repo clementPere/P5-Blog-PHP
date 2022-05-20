@@ -17,4 +17,11 @@ class UserManager extends User
         $req->execute();
         return $req->fetchAll();
     }
+
+    public function alreadyInUse($value)
+    {
+        $req = DBManager::getDb()->prepare("SELECT email FROM user WHERE email = '$value'");
+        $req->execute();
+        return $req->fetchAll();
+    }
 }

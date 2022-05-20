@@ -9,6 +9,20 @@
 	Connexion
 {% endblock %}
 {% block body %}
+
+	{% if newUser == true %}
+        <div class="alert alert-success w-100" role="alert">
+    {{message}}
+        </div>
+    {% endif %}
+
+    {% if newUser == false and message%}
+        <div class="alert alert-danger w-100 scrollBottom" role="alert">
+            {{message}} 
+        </div>
+    {% endif %}
+
+
 	<main>
 		<div class="container">
 			<div class="row">
@@ -71,13 +85,13 @@
 											<input type="text" name="lastname" id="lastname" tabindex="2" class="form-control" placeholder="Nom" value="">
 										</div>
 										<div class="form-group">
-											<input type="email" name="email" id="email" tabindex="1" class="form-control" placeholder="Adresse email" value="">
+											<input type="email" name="email" id="email" tabindex="3" class="form-control" placeholder="Adresse email" value="">
 										</div>
 										<div class="form-group">
-											<input type="password" name="password" id="password" tabindex="2" class="form-control" placeholder="Mot de passe">
+											<input type="password" name="password" id="password" tabindex="4" class="form-control" placeholder="Mot de passe">
 										</div>
 										<div class="form-group">
-											<input type="password" name="confirm-password" id="confirm-password" tabindex="2" class="form-control" placeholder="Confirmer le mot de passe">
+											<input type="password" name="confirm-password" id="confirm-password" tabindex="5" class="form-control" placeholder="Confirmer le mot de passe">
 										</div>
 										<div class="form-group">
 											<div class="row">
