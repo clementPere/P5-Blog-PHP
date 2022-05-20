@@ -4,7 +4,6 @@ namespace App\Controllers;
 
 use App\Models\User;
 use App\models\UserManager;
-use GuzzleHttp\Psr7\Response;
 
 class AuthController extends Controller
 {

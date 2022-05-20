@@ -4,8 +4,6 @@ namespace App\Controllers;
 
 use App\Models\User;
 use App\Models\Post;
-use App\Models\PostManager;
-use DateTime;
 
 class AdminPostController extends Controller
 {

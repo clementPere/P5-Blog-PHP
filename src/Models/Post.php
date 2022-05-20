@@ -2,8 +2,6 @@
 
 namespace App\Models;
 
-use DateTimeImmutable;
-
 class Post extends Model
 {
     private int $id;

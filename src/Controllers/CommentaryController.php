@@ -3,7 +3,6 @@
 namespace App\Controllers;
 
 use App\Models\Commentary;
-use App\Models\CommentaryManager;
 
 class CommentaryController extends Controller
 {
