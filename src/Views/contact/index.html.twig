@@ -4,17 +4,28 @@
 {% endblock %}
 {% block body %}
        
-    <form>
+    <form method="post">
+        <div class="form-row emailAndSelect">
+            <div class="form-group col-md-6">
+                <label for="lastname">Nom</label>
+                <input type="email" name="lastname" class="form-control" id="lastname" value="{{session['lastname']}}">
+            </div>
+            <div class="form-group col-md-6">
+                <label for="firstname">Prénom</label>
+                <input type="email" name="firstname" class="form-control" id="firstname" value="{{session['firstname']}}">
+            </div>
+        </div>
+
         <div class="form-row emailAndSelect">
             <div class="form-group col-md-6">
                 <label for="exampleFormControlInput1">Addresse email</label>
-                <input type="email" class="form-control" id="exampleFormControlInput1" placeholder="{{session['email']}}">
+                <input type="email" name="email" class="form-control" id="exampleFormControlInput1" value="{{session['email']}}">
             </div>
             <div class="form-group col-md-6">
                 <label for="exampleFormControlSelect1">Votre demande concerne</label>
-                <select class="form-control" id="exampleFormControlSelect1">
+                <select class="form-control" id="exampleFormControlSelect1" name="reason">
                 <option>Une validation de votre commentaire</option>
-                <option>Augmentez vos privilèges en passent administrateurs</option>
+                <option>Augmentez ses privilèges en passent administrateurs</option>
                 <option>Une remarque sur un utilisateur</option>
                 <option>Une remarque sur un commentaire</option>
                 <option>Une remarque sur un article</option>
@@ -24,8 +35,8 @@
         </div>
         <div class="form-group content">
             <label for="exampleFormControlTextarea1">Votre message</label>
-            <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" placeholder="Exemple de message..."></textarea>
+            <textarea class="form-control" name="content" id="exampleFormControlTextarea1" rows="3" placeholder="Exemple de message..."></textarea>
         </div>
-         <button type="submit" class="btn btn-outline-light sendBtn"> Envoyer <div class="logo"></div></button>
+         <button type="submit" name="contact-submit" class="btn btn-outline-light sendBtn"> Envoyer <div class="logo"></div></button>
     </form>
 {% endblock %}

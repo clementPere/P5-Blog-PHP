@@ -21,7 +21,7 @@ class AuthController extends Controller
             if (isset($_POST['email']) and isset($_POST['password'])) {
                 if ($_POST['email'] != "" and $_POST['password'] != "") {
                     $this->checkCredentials($_POST['email'], $_POST['password']);
-                    echo 'Login ou mot de passe non valide !';
+                    return $this->render(false, 'Login ou mot de passe incorect');
                 }
             }
         }
@@ -92,6 +92,8 @@ class AuthController extends Controller
         $_SESSION['id'] = $userCredentials[0]['id'];
         $_SESSION['role'] = $userCredentials[0]['role'];
         $_SESSION['is_valid'] = $userCredentials[0]['is_valid'];
+        $_SESSION['firstname'] = $userCredentials[0]['firstname'];
+        $_SESSION['lastname'] = $userCredentials[0]['lastname'];
         echo '<script language="Javascript"> document.location.replace("../Blog"); </script>';
     }
 }

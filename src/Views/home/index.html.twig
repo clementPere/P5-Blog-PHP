@@ -7,6 +7,9 @@
 {% endblock %}
 {% block body %}
 
+	{% if contactSend == true %}
+			<div class="alert alert-success w-100 mb-0" role="alert"> {{message}} </div>
+	{% endif %}
 	<div class="text-center">
 		<div class="baniere">
 			<div class="baniereContent">
@@ -47,8 +50,8 @@
 							role="button"
 						>Linkedin</a>
 						<a 	class="btn btn-outline-success btn-lg m-2"
-							href="https://www.linkedin.com/in/cl%C3%A9ment-p%C3%A9r%C3%A9-10749819a/"
-							target="_blank"
+							href="./assets/myFiles/Cv_Openclassrooms.jpg"
+							download
 							role="button">Télécharger mon CV</a>
 					</div>
 				</div>

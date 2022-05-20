@@ -12,6 +12,8 @@ $router = new Router($_GET['url']);
  * Nom du controller à appeler avec sa methode
  */
 $router->get('/', "Home->index");
+$router->post('/', "Home->index");
+
 $router->get('/posts', "Post->index");
 $router->post('/posts/commentary', "Commentary->index");
 
@@ -20,8 +22,6 @@ $router->post('/auth', "Auth->index");
 $router->get('/logout', "Auth->logout");
 
 $router->get('/user/account', 'UserAccount->index');
-
-$router->get('/contact', 'Contact->index');
 
 $router->get('/admin/comments', "AdminCommentary->index");
 $router->post('/admin/comments', "AdminCommentary->index");
