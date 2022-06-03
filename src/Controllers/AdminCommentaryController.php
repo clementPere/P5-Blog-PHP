@@ -18,20 +18,7 @@ class AdminCommentaryController extends Controller
         $this->redirect();
     }
 
-    private function redirect()
-    {
-        if ($_SESSION['role'] === 'admin') {
-            if (!isset($_POST['delete_comment']) && !isset($_POST['update_comment']) && !isset($_POST['create_comment'])) {
-                $this->render();
-            }
-            if (isset($_POST['update_comment'])) {
-                $this->updateComment();
-            }
-            if (isset($_POST['delete_comment'])) {
-                $this->deleteComment();
-            }
-        }
-    }
+
 
     private function updateComment()
     {
@@ -58,5 +45,21 @@ class AdminCommentaryController extends Controller
             'update_comment' => $updateComment,
             'message' => $message,
         ]);
+    }
+
+    private function redirect()
+    {
+        $role = $_SESSION['role'];
+        if ($role === 'admin') {
+            if (!isset($_POST['delete_comment']) && !isset($_POST['update_comment']) && !isset($_POST['create_comment'])) {
+                $this->render();
+            }
+            if (isset($_POST['update_comment'])) {
+                $this->updateComment();
+            }
+            if (isset($_POST['delete_comment'])) {
+                $this->deleteComment();
+            }
+        }
     }
 }
