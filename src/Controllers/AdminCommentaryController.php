@@ -9,7 +9,8 @@ class AdminCommentaryController extends Controller
     public function index()
     {
         $this->redirectNotConnected();
-        if ($_SESSION['role'] != 'admin') {
+        $sessionRole = $_SESSION['role'];
+        if ($sessionRole != 'admin') {
             $this->twig->display('admin/user/error.html.twig', [
                 'BASE_URL' => BASE_URL,
             ]);
@@ -30,18 +31,24 @@ class AdminCommentaryController extends Controller
 
     private function deleteComment()
     {
+        $postId = $_POST['id'];
         $comment = new Commentary;
-        $comment->delete('commentary', 'id', $_POST['id']);
+        $comment->delete('commentary', 'id', $postId);
         $this->render(true, 'Commentaire supprimé !');
     }
 
 
+    private function getAllComment()
+    {
+        Commentary::getAll('commentary');
+    }
+
 
     private function render($updateComment = false, $message = "")
     {
-        $comments = Commentary::getAll('commentary');
+
         $this->twig->display("admin/commentary/index.html.twig", [
-            'comments' => $comments,
+            'comments' => $this->getAllComment(),
             'update_comment' => $updateComment,
             'message' => $message,
         ]);
