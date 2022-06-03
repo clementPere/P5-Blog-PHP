@@ -31,9 +31,8 @@ class AdminCommentaryController extends Controller
 
     private function deleteComment()
     {
-        $postId = $_POST['id'];
         $comment = new Commentary;
-        $comment->delete('commentary', 'id', $postId);
+        $comment->delete('commentary', 'id', $_POST['id']);
         $this->render(true, 'Commentaire supprimé !');
     }
 
@@ -56,8 +55,7 @@ class AdminCommentaryController extends Controller
 
     private function redirect()
     {
-        $role = $_SESSION['role'];
-        if ($role === 'admin') {
+        if ($_SESSION['role'] === 'admin') {
             if (!isset($_POST['delete_comment']) && !isset($_POST['update_comment']) && !isset($_POST['create_comment'])) {
                 $this->render();
             }
