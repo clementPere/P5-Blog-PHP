@@ -48,11 +48,11 @@ class AuthController extends Controller
 
                 if ($this->checkAlreadyExist($email)) {
                     $this->render(false, "cet email est déjà utilisé. merci d'en saisir un nouveau");
-                } else {
-                    $user = new User;
-                    $user->create($firstname, $lastname, $email, $password);
-                    return $this->render(true, "Votre Compte à bien été ajouté");
+                    return;
                 }
+                $user = new User;
+                $user->create($firstname, $lastname, $email, $password);
+                return $this->render(true, "Votre compte à bien été ajouté");
             }
         }
     }
