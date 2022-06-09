@@ -15,33 +15,43 @@ class AuthController extends Controller
             $this->render();
         }
 
-
-        //If the user want to connect
         if (isset($_POST['login-submit'])) {
-            if (isset($_POST['email']) and isset($_POST['password'])) {
-                if ($_POST['email'] != "" and $_POST['password'] != "") {
-                    $this->checkCredentials($_POST['email'], $_POST['password']);
-                    return $this->render(false, 'Login ou mot de passe incorect');
-                }
-            }
+            $this->login();
         }
 
-        //if the user want to register
         if (isset($_POST['register-submit'])) {
-            if (isset($_POST['firstname']) and isset($_POST['lastname']) and isset($_POST['email']) and isset($_POST['password']) and isset($_POST['confirm-password'])) {
-                if ($_POST['password'] === $_POST['confirm-password']) {
-                    $firstname = htmlspecialchars($_POST['firstname']);
-                    $lastname = htmlspecialchars($_POST['lastname']);
-                    $email = htmlspecialchars($_POST['email']);
-                    $password = htmlspecialchars($_POST['password']);
+            $this->register();
+        }
+    }
 
-                    if ($this->checkAlreadyExist($email)) {
-                        $this->render(false, "cet email est déjà utilisé. merci d'en saisir un nouveau");
-                    } else {
-                        $user = new User;
-                        $user->create($firstname, $lastname, $email, $password);
-                        return $this->render(true, "Votre Compte à bien été ajouté");
-                    }
+    private function login()
+    {
+        //If the user want to connect
+        if (isset($_POST['email']) and isset($_POST['password'])) {
+            if ($_POST['email'] != "" and $_POST['password'] != "") {
+                $this->checkCredentials($_POST['email'], $_POST['password']);
+                return $this->render(false, 'Login ou mot de passe incorect');
+            }
+        }
+    }
+
+    private function register()
+    {
+        //if the user want to register
+
+        if (isset($_POST['firstname']) and isset($_POST['lastname']) and isset($_POST['email']) and isset($_POST['password']) and isset($_POST['confirm-password'])) {
+            if ($_POST['password'] === $_POST['confirm-password']) {
+                $firstname = htmlspecialchars($_POST['firstname']);
+                $lastname = htmlspecialchars($_POST['lastname']);
+                $email = htmlspecialchars($_POST['email']);
+                $password = htmlspecialchars($_POST['password']);
+
+                if ($this->checkAlreadyExist($email)) {
+                    $this->render(false, "cet email est déjà utilisé. merci d'en saisir un nouveau");
+                } else {
+                    $user = new User;
+                    $user->create($firstname, $lastname, $email, $password);
+                    return $this->render(true, "Votre Compte à bien été ajouté");
                 }
             }
         }

@@ -39,7 +39,7 @@ class AdminCommentaryController extends Controller
 
     private function getAllComment()
     {
-        Commentary::getAll('commentary');
+        return Commentary::getAll('commentary');
     }
 
 
