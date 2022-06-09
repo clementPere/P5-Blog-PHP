@@ -8,8 +8,7 @@ define('ROOT', dirname(__DIR__) . '\Blog');
 define('BASE_URL', "http://localhost/Formation/OpenClassrooms/P5blog/Blog/");
 
 if (isset($_GET['url'])) {
-    $url = $_GET['url'];
-    $router = new Router($url);
+    $router = new Router($_GET['url']);
 }
 
 /**
