@@ -6,7 +6,11 @@ use App\Router\Router;
 
 define('ROOT', dirname(__DIR__) . '\Blog');
 define('BASE_URL', "http://localhost/Formation/OpenClassrooms/P5blog/Blog/");
-$router = new Router($_GET['url']);
+
+if (isset($_GET['url'])) {
+    $url = $_GET['url'];
+    $router = new Router($url);
+}
 
 /**
  * Nom du controller à appeler avec sa methode
