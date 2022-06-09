@@ -55,7 +55,6 @@ class AdminPostController extends Controller
             if (empty($value)) {
                 $message = 'Tous les champs sont obligatoires';
                 $this->render(false, $message);
-                echo '';
                 return;
             }
         }
