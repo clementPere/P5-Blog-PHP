@@ -72,7 +72,6 @@
     position: relative;
 }
 
-
 .btn-outline-success:after {
     content: '»';
     position: absolute;
