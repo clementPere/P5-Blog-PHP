@@ -1,6 +1,6 @@
 * {
-    margin: 0px;
-    padding: 0px;
+    margin: 0;
+    padding: 0;
 }
 
 .baniere {
@@ -11,7 +11,7 @@
     background-image: url('../images/baniere2.jpg');
     background-size: cover;
     background-position: center center;
-    box-shadow: rgb(38, 57, 77) 0px 20px 30px -10px;
+    box-shadow: rgb(38, 57, 77) 0 20px 30px -10px;
 }
 
 .myName {
@@ -32,7 +32,7 @@
 
 .description {
     background-color: rgba(255, 255, 255, 0.801);
-    box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px, rgba(0, 0, 0, 0.3) 0px 30px 60px -30px;
+    box-shadow: rgba(50, 50, 93, 0.25) 0 50px 100px -20px, rgba(0, 0, 0, 0.3) 0 30px 60px -30px;
     margin: 50px;
     transition: transform .5s;
     overflow: hidden;
@@ -55,7 +55,7 @@
 
 .description:hover {
     /* Safari 3-8 */
-    transform: scale(1.05) translate(0px);
+    transform: scale(1.05) translate(0);
 }
 
 /* Animation Btn link */
