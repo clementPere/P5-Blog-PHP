@@ -34,7 +34,7 @@
     background-color: rgba(255, 255, 255, 0.801);
     box-shadow: rgba(50, 50, 93, 0.25) 0 50px 100px -20px, rgba(0, 0, 0, 0.3) 0 30px 60px -30px;
     margin: 50px;
-    transition: transform .5s;
+    transition: transform 0.5s;
     overflow: hidden;
 }
 
@@ -67,15 +67,11 @@
     transition: all 0.3s;
     cursor: pointer;
     margin: 36px;
-    box-shadow: 0 10px 20px -8px rgba(0, 0, 0, .7);
-}
-
-.btn-outline-success {
-    cursor: pointer;
+    box-shadow: 0 10px 20px -8px rgba(0, 0, 0, 0.7);
     display: inline-block;
     position: relative;
-    transition: 0.5s;
 }
+
 
 .btn-outline-success:after {
     content: '»';
