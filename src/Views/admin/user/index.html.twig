@@ -13,9 +13,8 @@
 {% endif %}
     {% for user in users %}
         <div class="card mb-4 usersBox" style="width: 80%; margin:auto;">
-            {# <img src="../assets/images/user.png" class="card-img-top" alt="User image" style="background-color:grey;"> #}
             <div class="card-body">
-                <h2 class="card-title text-center" >Modifier le contact</h2>
+                <h2 class="card-title text-center" >Modifier le contact {{user.firstname}}</h2>
                 <form id="login-form" action="" method="POST" role="form">
                     <ul class="list-group list-group-flush">
                         <li class="list-group-item">

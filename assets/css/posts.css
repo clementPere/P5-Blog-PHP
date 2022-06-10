@@ -4,7 +4,18 @@
     margin: auto;
     margin-top: 25px;
     width: 80%;
+
 }
+
+.test {
+    transition: transform 0.5s;
+    overflow: hidden;
+}
+
+.test:hover {
+    transform: scale(1.05) translate(0);
+}
+
 
 .inputCreate {
     display: flex;

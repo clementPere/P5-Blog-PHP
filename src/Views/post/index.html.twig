@@ -8,7 +8,7 @@
 
 {% block body %}
 	{% for post in posts %}
-		<div class="card mb-5 postsBox">
+		<div class="card mb-5 postsBox {% if not detail %} test {% endif %}">
 			<div class="card-header">
 				<h2>{{post.title}}</h2>
 			</div>

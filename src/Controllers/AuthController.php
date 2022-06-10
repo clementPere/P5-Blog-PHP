@@ -29,8 +29,8 @@ class AuthController extends Controller
         //If the user want to connect
         if (isset($_POST['email']) and isset($_POST['password'])) {
             if ($_POST['email'] != "" and $_POST['password'] != "") {
-                $this->checkCredentials($_POST['email'], $_POST['password']);
-                return $this->render(false, 'Login ou mot de passe incorect');
+                $this->isValidUser();
+                return $this->render(false, $this->isValidUser());
             }
         }
     }
@@ -72,16 +72,19 @@ class AuthController extends Controller
      * @param string $password
      * 
      */
-    private function checkCredentials(string $email, string $password)
+    private function isValidUser()
     {
-        $email = htmlspecialchars($email);
-        $pass = htmlspecialchars($password);
+        $email = htmlspecialchars($_POST['email']);
+        $pass = htmlspecialchars($_POST['password']);
         $user = new UserManager;
         $userCredentials = $user->checkCredentials("$email", "$pass");
         if ($userCredentials) {
-            $this->connectUser($userCredentials);
+            if ($userCredentials[0]['is_valid'] == 1) {
+                $this->connectUser($userCredentials);
+            }
+            return 'Votre compte est bien enregistré mais pas encore validé par notre équipe merci de patienter';
         }
-        return false;
+        return 'Login ou mot de passe incorrect';
     }
 
     private function render($newUser = false, $message = "")
