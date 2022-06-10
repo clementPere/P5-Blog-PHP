@@ -62,7 +62,8 @@ class Model
             $value = htmlspecialchars($value);
             $explode = explode('update', $key);
             $value = str_replace("'", "\'", $value);
-            if ($key !== 'created_at' and substr($explode[0], 0) and $key !== 'id' and $key !== 'create_post' and $key !== 'addComment' and $key !== 'confirm-password' and $key !== 'register-submit') {
+            $removeValues = ['created_at', 'id', 'create_post', 'addComment', 'confirm-password', 'register-submit'];
+            if (substr($explode[0], 0) and !in_array($key, $removeValues)) {
                 if ($key == 'User_id') {
                     $value = $_SESSION['id'];
                 }
