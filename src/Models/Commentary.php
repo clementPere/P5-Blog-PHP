@@ -12,7 +12,6 @@ class Commentary extends Model
     private DateTimeImmutable $created_at;
     private bool $is_valid;
     private $post_id;
-    private $Post_User_id;
 
 
     public function __construct()
@@ -140,26 +139,6 @@ class Commentary extends Model
     public function setPost_id($post_id)
     {
         $this->post_id = $post_id;
-
-        return $this;
-    }
-
-    /**
-     * Get the value of Post_User_id
-     */
-    public function getPost_User_id()
-    {
-        return $this->Post_User_id;
-    }
-
-    /**
-     * Set the value of Post_User_id
-     *
-     * @return  self
-     */
-    public function setPost_User_id($Post_User_id)
-    {
-        $this->Post_User_id = $Post_User_id;
 
         return $this;
     }
